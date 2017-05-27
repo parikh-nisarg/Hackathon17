@@ -1,0 +1,83 @@
+.circleHome {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  font-size: 30px;
+  color:#ffffff;
+  line-height: 170px;
+  text-align: center;
+
+background: rgba(252,234,187,1);
+background: -moz-linear-gradient(left, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 29%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(252,234,187,1)), color-stop(29%, rgba(252,205,77,1)), color-stop(51%, rgba(248,181,0,1)), color-stop(100%, rgba(251,223,147,1)));
+background: -webkit-linear-gradient(left, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 29%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: -o-linear-gradient(left, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 29%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+background: -ms-linear-gradient(left, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 29%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
+}
+
+.circleAboutUs{
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  font-size: 30px;
+  color:#ffffff;
+  line-height: 170px;
+  text-align: center;
+  background: #cc0000
+
+
+
+
+}
+
+.circleCareer{
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  font-size: 30px;
+  color:#ffffff;
+  line-height: 170px;
+  text-align: center;
+background: rgba(248,80,50,1);
+background: -moz-linear-gradient(left, rgba(248,80,50,1) 0%, rgba(240,47,23,1) 23%, rgba(246,41,12,1) 51%, rgba(241,111,92,1) 76%, rgba(231,56,39,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(248,80,50,1)), color-stop(23%, rgba(240,47,23,1)), color-stop(51%, rgba(246,41,12,1)), color-stop(76%, rgba(241,111,92,1)), color-stop(100%, rgba(231,56,39,1)));
+background: -webkit-linear-gradient(left, rgba(248,80,50,1) 0%, rgba(240,47,23,1) 23%, rgba(246,41,12,1) 51%, rgba(241,111,92,1) 76%, rgba(231,56,39,1) 100%);
+background: -o-linear-gradient(left, rgba(248,80,50,1) 0%, rgba(240,47,23,1) 23%, rgba(246,41,12,1) 51%, rgba(241,111,92,1) 76%, rgba(231,56,39,1) 100%);
+background: -ms-linear-gradient(left, rgba(248,80,50,1) 0%, rgba(240,47,23,1) 23%, rgba(246,41,12,1) 51%, rgba(241,111,92,1) 76%, rgba(231,56,39,1) 100%);
+background: linear-gradient(to right, rgba(248,80,50,1) 0%, rgba(240,47,23,1) 23%, rgba(246,41,12,1) 51%, rgba(241,111,92,1) 76%, rgba(231,56,39,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f85032', endColorstr='#e73827', GradientType=1 );
+}
+
+.circleContactUs{
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  font-size: 30px;
+  color:#ffffff;
+  line-height: 170px;
+  text-align: center;
+  background: rgba(203,96,179,1);
+background: -moz-linear-gradient(left, rgba(203,96,179,1) 0%, rgba(193,70,161,1) 30%, rgba(168,0,119,1) 51%, rgba(219,54,164,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(203,96,179,1)), color-stop(30%, rgba(193,70,161,1)), color-stop(51%, rgba(168,0,119,1)), color-stop(100%, rgba(219,54,164,1)));
+background: -webkit-linear-gradient(left, rgba(203,96,179,1) 0%, rgba(193,70,161,1) 30%, rgba(168,0,119,1) 51%, rgba(219,54,164,1) 100%);
+background: -o-linear-gradient(left, rgba(203,96,179,1) 0%, rgba(193,70,161,1) 30%, rgba(168,0,119,1) 51%, rgba(219,54,164,1) 100%);
+background: -ms-linear-gradient(left, rgba(203,96,179,1) 0%, rgba(193,70,161,1) 30%, rgba(168,0,119,1) 51%, rgba(219,54,164,1) 100%);
+background: linear-gradient(to right, rgba(203,96,179,1) 0%, rgba(193,70,161,1) 30%, rgba(168,0,119,1) 51%, rgba(219,54,164,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb60b3', endColorstr='#db36a4', GradientType=1 );
+
+  
+}
+
+
+.headerBackground{
+
+  background: rgba(200,182,237,1);
+background: -moz-linear-gradient(left, rgba(200,182,237,1) 0%, rgba(153,113,239,1) 17%, rgba(88,34,226,1) 67%, rgba(200,182,237,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(200,182,237,1)), color-stop(17%, rgba(153,113,239,1)), color-stop(67%, rgba(88,34,226,1)), color-stop(100%, rgba(200,182,237,1)));
+background: -webkit-linear-gradient(left, rgba(200,182,237,1) 0%, rgba(153,113,239,1) 17%, rgba(88,34,226,1) 67%, rgba(200,182,237,1) 100%);
+background: -o-linear-gradient(left, rgba(200,182,237,1) 0%, rgba(153,113,239,1) 17%, rgba(88,34,226,1) 67%, rgba(200,182,237,1) 100%);
+background: -ms-linear-gradient(left, rgba(200,182,237,1) 0%, rgba(153,113,239,1) 17%, rgba(88,34,226,1) 67%, rgba(200,182,237,1) 100%);
+background: linear-gradient(to right, rgba(200,182,237,1) 0%, rgba(153,113,239,1) 17%, rgba(88,34,226,1) 67%, rgba(200,182,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c8b6ed', endColorstr='#c8b6ed', GradientType=1 );
+
+}
