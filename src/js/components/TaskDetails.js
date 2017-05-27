@@ -79,109 +79,122 @@ export default class TaskDetails extends Component {
 
                             <div className="tab-content ">
                                 <div className="tab-pane active" id="1">
+                                    {/*new*/}
                                     <div
                                         style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
-                                        <div className="row">
-                                            <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
-                                                <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
-                                            </div>
-                                            <div className="col-md-9" style={{'marginTop':'5px'}}>
-                                                                      <span style={{'fontSize':'20px'}}>
+                                        
+
+
+                                              
+                                                <div className="row">
+                                                    <div className="col-md-2">
+                                                        <img src="src/images/jobSearch.jpg" style={{'width':'150px'}}/>
+                                                    </div> 
+                                                        <div className="col-md-10">
+                                                            <div className="row" style={{'paddingBottom':'6px'}}>
+                                                                <div className="col-md-10">
+                                                                     <span style={{'fontSize':'20px'}}>
                                                                           <strong>
                                                                               Lorem ipsum dolor sit amet, consectetur
                                                                               adipisicing elit.
-                                                                              &nbsp;&nbsp;<span
-                                                                              className="label label-info">Full Time</span>
-                                                                              &nbsp;&nbsp;<span
-                                                                              className="label btnbrowse"
-                                                                              style={{'cursor':'pointer'}}>Apply</span>
+                                                                              &nbsp;&nbsp;
                                                                           </strong>
                                                                       </span>
-                                            </div>
-
-                                        </div>
-
-                                        <div className="row">
-                                            <div className="col-md-2" style={{'marginTop':'5px'}}>
-                                            </div>
-                                            <div className="col-md-9">
-                                                asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj
-                                                jhbjhdf . ab hjafj sdf akjhdfbhsd bfhsdf sdhf sdfhhjksd fhkbsdd
-                                                fhkjsdfhbsddfh hsdf hsdfh sdf asdfasd asd asd asdsd
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/*row 2*/}
+                                                                </div>    
+                                                                
+                                                                <div className="col-md-2">
+                                                                               <span
+                                                                              className="label label-info" style={{'fontSize':'12'}}>Full Time</span>
+                                                                              &nbsp;&nbsp;<span
+                                                                              className="label btnbrowse"
+                                                                              style={{'cursor':'pointer','fontSize':'12'}}>Apply</span>
+                                                                </div>    
+                                                            </div>
+                                                            
+                                                            <div className="row">
+                                                                <div className="col-md-12">
+                                                                    asasdasdasd asd asd asdfn kjasdjkas d kdjfkj hdf sdkhfkjh hsdfkhjh sdjkfkh sdkhfj sdfk df sdljkf sdfl df
+                                                                    alsddlj najklj asddfjk fdjkkj sdjkfjk jsdjfkjl jsjdfjjl sdf sdfuo ujsdfujh usdfuo osdfou sdofo osdf end
+                                                                    asd asdlj nasdjkbndkhkh hkaskgdhk khasdhkghk assdghjk ashjkdgahj dshgdhashdj asd
+                                                                </div>
+                                                            </div> 
+                                                            
+                                                            <div className="row" style={{'paddingTop':'14px'}}>
+                                                                <div className="col-md-4">
+                                                                    <span style={{'color':'grey'}}>Location : PUNE</span>&nbsp;&nbsp;
+                                                                    
+                                                                </div>
+                                                                <div className="col-md-4">
+                                                                <span style={{'color':'grey'}}>Skills  : ASP.NET, JQuery</span>
+                                                                </div>
+                                                                
+                                                            </div>       
+                                                    </div>    
+                                                </div>
+                                               </div> 
+                                            {/*End new*/}    
+                                              {/*new*/}
                                     <div
                                         style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
-                                        <div className="row">
-                                            <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
-                                                <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
-                                            </div>
+                                        
 
-                                            <div className="col-md-9" style={{'marginTop':'5px'}}>
-                                                                      <span style={{'fontSize':'20px'}}>
+
+                                              
+                                                <div className="row">
+                                                    <div className="col-md-2">
+                                                        <img src="src/images/jobSearch.jpg" style={{'width':'150px'}}/>
+                                                    </div> 
+                                                        <div className="col-md-10">
+                                                            <div className="row" style={{'paddingBottom':'6px'}}>
+                                                                <div className="col-md-10">
+                                                                     <span style={{'fontSize':'20px'}}>
                                                                           <strong>
-                                                                              Lorem ipsum dolor sit amet, consectetur
-                                                                              adipisicing elit.
-                                                                              &nbsp;&nbsp;<span
-                                                                              className="label label-primary">Part-Time</span>
-                                                                              &nbsp;&nbsp;<span
-                                                                              className="label btnbrowse"
-                                                                              style={{'cursor':'pointer'}}>Apply</span>
+                                                                                Required Team Leader urgent base, consectetur
+                                                                                adipisicing elit.
+                                                                                &nbsp;&nbsp;
                                                                           </strong>
                                                                       </span>
-                                            </div>
-
-                                        </div>
-
-                                        <div className="row">
-                                            <div className="col-md-2" style={{'marginTop':'5px'}}>
-                                            </div>
-                                            <div className="col-md-9">
-                                                asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj
-                                                jhbjhdf . ab hjafj sdf akjhdfbhsd bfhsdf sdhf sdfhhjksd fhkbsdd
-                                                fhkjsdfhbsddfh hsdf hsdfh sdf asdfasd asd asd asdsd
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    {/*row 3*/}
-                                    <div
-                                        style={{'marginTop':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
-                                        <div className="row">
-                                            <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
-                                                <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
-                                            </div>
-
-                                            <div className="col-md-9" style={{'marginTop':'5px'}}>
-                                                                      <span style={{'fontSize':'20px'}}>
-                                                                          <strong>
-                                                                              Lorem ipsum dolor sit amet, consectetur
-                                                                              adipisicing elit.
-                                                                              &nbsp;&nbsp;<span
-                                                                              className="label label-info">Full Time</span>
+                                                                </div>    
+                                                                
+                                                                <div className="col-md-2">
+                                                                               <span
+                                                                              className="label label-info" style={{'fontSize':'12'}}>Full Time</span>
                                                                               &nbsp;&nbsp;<span
                                                                               className="label btnbrowse"
-                                                                              style={{'cursor':'pointer'}}>Apply</span>
-                                                                          </strong>
-                                                                      </span>
-                                            </div>
+                                                                              style={{'cursor':'pointer','fontSize':'12'}}>Apply</span>
+                                                                </div>    
+                                                            </div>
+                                                            
+                                                            <div className="row">
+                                                                <div className="col-md-12">
+                                                                    asasdasdasd asd asd asdfn kjasdjkas d kdjfkj hdf sdkhfkjh hsdfkhjh sdjkfkh sdkhfj sdfk df sdljkf sdfl df
+                                                                    alsddlj najklj asddfjk fdjkkj sdjkfjk jsdjfkjl jsjdfjjl sdf sdfuo ujsdfujh usdfuo osdfou sdofo osdf end
+                                                                    asd asdlj nasdjkbndkhkh hkaskgdhk khasdhkghk assdghjk ashjkdgahj dshgdhashdj asd
+                                                                </div>
+                                                            </div> 
+                                                            
+                                                            <div className="row" style={{'paddingTop':'14px'}}>
+                                                                <div className="col-md-4">
+                                                                    <span style={{'color':'grey'}}>Location : PUNE</span>&nbsp;&nbsp;
+                                                                    
+                                                                </div>
+                                                                <div className="col-md-4">
+                                                                <span style={{'color':'grey'}}>Skills  : ASP.NET, JQuery</span>
+                                                                </div>
+                                                                
+                                                            </div>       
+                                                    </div>    
+                                                </div>
+                                               </div> 
+                                            {/*End new*/}       
+                                            
 
-                                        </div>
 
-                                        <div className="row">
-                                            <div className="col-md-2" style={{'marginTop':'5px'}}>
-                                            </div>
-                                            <div className="col-md-9">
-                                                asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj
-                                                jhbjhdf . ab hjafj sdf akjhdfbhsd bfhsdf sdhf sdfhhjksd fhkbsdd
-                                                fhkjsdfhbsddfh hsdf hsdfh sdf asdfasd asd asd asdsd
-                                            </div>
-                                        </div>
-                                    </div>
+
+
+                                    
+
+                                    
 
 
                                 </div>
