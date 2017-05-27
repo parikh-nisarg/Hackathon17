@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Second from './components/Second';
 
-import {BrowserRouter, Route, Link, Redirect, Switch, withRouter} from 'react-router-dom';
+import {HashRouter as Router, Route, Link, Redirect, Switch, withRouter} from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
 import App from './components/DesignApp';
@@ -12,11 +12,13 @@ import TaskDetails from './components/TaskDetails';
 const history = createHistory();
 
 ReactDOM.render((
-        <BrowserRouter>
+        <Router>
             <Switch>
                 <Route exact={true} path="/" component={TaskDetails}/>
+                <Route exact={true} path="/app" component={App}/>
+                <Route exact={true} path="/reg" component={CandidateDetails}/>
             </Switch>
-        </BrowserRouter>
+        </Router>
     ),
     document.getElementById('main')
 );
