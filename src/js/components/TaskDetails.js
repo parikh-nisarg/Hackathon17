@@ -11,7 +11,7 @@ export default class TaskDetails extends Component {
     constructor() {
         super();
 
-        this.state = ({occupiedTeamLeadWork: [], clientIds: [], projectIds: [], moduleIds: [], employeeIds: []});
+        this.state = ({occupiedTeamLeadWork: [], clientInfo: [], projectInfo: [], moduleInfo: [], employeeIds: []});
 
         let teamLeadId = "4BpEBnypYhfMzVqQ9oWkgXy4Sox1";
 
@@ -31,23 +31,23 @@ export default class TaskDetails extends Component {
                     return obj.workingDetails.clientId
                 });
                 clientIds = $.unique(clientIds);
+                this.setClientInfoState(...clientIds);
                 let projectIds = occupiedTeamLead.map((obj) => {
                     return obj.workingDetails.projectId
                 });
                 projectIds = $.unique(projectIds);
+
                 let moduleIds = occupiedTeamLead.map((obj) => {
                     return obj.workingDetails.moduleId
                 });
                 moduleIds = $.unique(moduleIds);
+                this.setProjectModuleInfoState(moduleIds, ...projectIds);
                 let employeeIds = occupiedTeamLead.map((obj) => {
                     return obj.id
                 });
 
                 this.setState({
                     occupiedTeamLeadWork: occupiedTeamLead,
-                    clientIds,
-                    projectIds,
-                    moduleIds,
                     employeeIds
                 });
             }
@@ -56,10 +56,62 @@ export default class TaskDetails extends Component {
         // let occupiedTeamLeadInfo = _database.getTeamLeadWorkingDetails("4BpEBnypYhfMzVqQ9oWkgXy4Sox1");
     }
 
+    setClientInfoState(...clientIds) {
+        let clientDetails = new database("ClientDetails"), clientInfo = [];
+        for (let i = 0; i < clientIds.length; i++) {
+            clientDetails.getData(clientIds[i]).then((data) => {
+                var _clientInfo = data.val();
+
+                clientInfo.push(_clientInfo);
+                this.setState({clientInfo});
+            });
+        }
+    }
+
+    setProjectModuleInfoState(moduleIds, ...projectIds) {
+        let projectDetails = new database("ProjectDetails"), projectInfo = [], moduleInfo = [];
+        for (let i = 0; i < projectIds.length; i++) {
+            projectDetails.getData(projectIds[i]).then((data) => {
+                var _projectInfo = data.val();
+                projectInfo.push(_projectInfo);
+
+                this.setState({projectInfo});
+
+                let modulefromProject = _projectInfo.modules.filter((module) => {
+                    if (moduleIds.toString().includes(module.id.toString())) {
+                        let isModuleStateExist = this.state.moduleInfo.filter((stateModule) => {
+                            return stateModule.id == module.id
+                        });
+                        if (isModuleStateExist.length == 0) {
+                            moduleInfo.push(module);
+
+                            this.setState({moduleInfo});
+                        }
+                    }
+                });
+            });
+        }
+    }
+
+    setModuleInfoState(...moduleIds) {
+        let moduleDetails = new database("ModuleDetails"), moduleInfo = [];
+        for (let i = 0; i < moduleIds.length; i++) {
+            moduleDetails.getData(moduleIds[i]).then((data) => {
+                var _moduleInfo = data.val();
+
+                moduleInfo.push(_moduleInfo);
+                this.setState({moduleInfo});
+            });
+        }
+    }
+
+    renderOptions(obj) {
+        debugger;
+        return (<option data-clientId={obj.id} key={obj.id}>{obj.name}</option>)
+    }
+
     render() {
         return ( <div>
-
-            <Link to="/app">Design</Link><br/><Link to="/reg">Reg</Link>
 
             <div className="container-fluid">
                 <div className="row-fluid">
@@ -195,11 +247,9 @@ export default class TaskDetails extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="dlClients">Clients</label>
                                                         <select className="form-control" id="dlClients">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
+                                                            {this.state.clientInfo.map((client) => {
+                                                                return this.renderOptions(client)
+                                                            })}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -207,11 +257,9 @@ export default class TaskDetails extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="dlProjects">Projects</label>
                                                         <select className="form-control" id="dlProjects">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
+                                                            {this.state.projectInfo.map((project) => {
+                                                                return this.renderOptions(project)
+                                                            })}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -219,11 +267,9 @@ export default class TaskDetails extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="dlModules">Modules</label>
                                                         <select className="form-control" id="dlModules">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
+                                                            {this.state.moduleInfo.map((module) => {
+                                                                return this.renderOptions(module)
+                                                            })}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -231,11 +277,9 @@ export default class TaskDetails extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="dlEmployees">Employees</label>
                                                         <select className="form-control" id="dlEmployees">
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
+                                                            {this.state.occupiedTeamLeadWork.map((emp) => {
+                                                                return this.renderOptions(emp)
+                                                            })}
                                                         </select>
                                                     </div>
                                                 </div>
