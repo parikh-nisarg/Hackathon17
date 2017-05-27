@@ -158,4 +158,20 @@ export default class Database extends React.Component {
 
     }
 
+     searchData(searchText,value) {
+
+        let promise = new Promise((resolve, reject) => {
+            let dbRef = firebase.database().ref(`${this.table}/`);
+            dbRef.orderByChild(searchText).equalTo(value).on('value', (snap) => {
+                if (snap) {
+                    resolve(snap);
+                }
+                else {
+                    reject("Error During data fetching...");
+                }
+            })
+        });
+        return promise;
+    }
+
 }

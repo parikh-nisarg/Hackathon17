@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Database from './Database';
 import JobRequisition from './JobRequisition';
+import TaskManagement from './TaskManagement';
 
 export default class ManagerDetails extends React.Component{
     constructor(){
         super();
         this.state={
-            jobs:[]
+            jobs:[],
+            teamLeadList:[]
         }
     }
 
@@ -21,16 +23,33 @@ export default class ManagerDetails extends React.Component{
         }, (error) => {
             alert(error);
         });
+
+        let objDatabase1 = new Database('UserDetails');
+          objDatabase1.searchData("roleId",2).then((result) => {
+              debugger;
+            let dataList = result.val();
+            this.state.teamLeadList = dataList;
+            this.setState({teamLeadList:this.state.teamLeadList});
+        }, (error) => {
+            alert(error);
+        });
     }
 
     showJob(id){
-        debugger;
         alert(id);
     }
 
-    renderJobs(data){
+    renderJobs(key){
+        let data = this.state.jobs[key];
         return(
-            <JobRequisition key={data.id} showJob={this.showJob}  data = {data}   />
+            <JobRequisition key={key} showJob={this.showJob}  data = {data}   />
+        )
+    }
+
+     renderManamgement(key){
+        let data = this.state.jobs[key];
+        return(
+            <TaskManagement key={key} showJob={this.showJob}  data = {data}   />
         )
     }
 
@@ -68,101 +87,22 @@ export default class ManagerDetails extends React.Component{
                                                         <div className="tab-pane active" id="1">
                                                            
                                                        {
-                                                           this.state.jobs.map((data)=> {return this.renderJobs(data)})
+                                                          Object.keys(this.state.jobs).map((key)=> {return this.renderJobs(key)})
                                                        }
 
 
                                                         </div>
                                                         
                                                         <div className="tab-pane" id="2">
-                                                            {/*row 1*/}
-                                                            <div style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
-                                                                <div className="row" >
-                                                                    <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
-                                                                            <img src="src/images/applied.png" style={{'width':'150px'}}/>
-                                                                    </div>
-
-                                                                    <div className="col-md-9" style={{'marginTop':'5px'}}>
-                                                                      <span style={{'fontSize':'20px'}}>
-                                                                          <strong>
-                                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                                            &nbsp;&nbsp;<span className="label label-info">Full Time</span>
-                                                                            &nbsp;&nbsp;<span className="label btnbrowse" style={{'cursor':'pointer'}}>Status</span>
-                                                                        </strong>
-                                                                      </span>                                                                      
-                                                                    </div>
-                                                                  
-                                                                </div>    
-
-                                                                <div className="row">
-                                                                     <div className="col-md-2" style={{'marginTop':'5px'}}>
-                                                                     </div>    
-                                                                     <div className="col-md-9">
-                                                                         asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj jhbjhdf .  ab hjafj sdf akjhdfbhsd bfhsdf sdhf sdfhhjksd fhkbsdd fhkjsdfhbsddfh hsdf hsdfh sdf asdfasd asd asd asdsd 
-                                                                     </div>   
-                                                                </div>    
-                                                            </div> 
-                                                            {/*row 2*/}
-                                                            <div style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
-                                                                <div className="row" >
-                                                                    <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
-                                                                            <img src="src/images/applied.png" style={{'width':'150px'}}/>
-                                                                    </div>
-
-                                                                    <div className="col-md-9" style={{'marginTop':'5px'}}>
-                                                                      <span style={{'fontSize':'20px'}}>
-                                                                          <strong>
-                                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                                            &nbsp;&nbsp;<span className="label label-info">Full Time</span>
-                                                                            &nbsp;&nbsp;<span className="label btnbrowse" style={{'cursor':'pointer'}}>Status</span>
-                                                                        </strong>
-                                                                      </span>                                                                      
-                                                                    </div>
-                                                                  
-                                                                </div>    
-
-                                                                <div className="row">
-                                                                     <div className="col-md-2" style={{'marginTop':'5px'}}>
-                                                                     </div>    
-                                                                     <div className="col-md-9">
-                                                                         asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj jhbjhdf .  ab hjafj sdf akjhdfbhsd bfhsdf sdhf sdfhhjksd fhkbsdd fhkjsdfhbsddfh hsdf hsdfh sdf asdfasd asd asd asdsd 
-                                                                     </div>   
-                                                                </div>    
-                                                            </div> 
-                                                            {/*row 3*/}
-                                                            <div style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
-                                                                <div className="row" >
-                                                                    <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
-                                                                            <img src="src/images/applied.png" style={{'width':'150px'}}/>
-                                                                    </div>
-
-                                                                    <div className="col-md-9" style={{'marginTop':'5px'}}>
-                                                                      <span style={{'fontSize':'20px'}}>
-                                                                          <strong>
-                                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                                            &nbsp;&nbsp;<span className="label label-info">Full Time</span>
-                                                                            &nbsp;&nbsp;<span className="label btnbrowse" style={{'cursor':'pointer'}}>Status</span>
-                                                                        </strong>
-                                                                      </span>                                                                      
-                                                                    </div>
-                                                                  
-                                                                </div>    
-
-                                                                <div className="row">
-                                                                     <div className="col-md-2" style={{'marginTop':'5px'}}>
-                                                                     </div>    
-                                                                     <div className="col-md-9">
-                                                                         asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj jhbjhdf .  ab hjafj sdf akjhdfbhsd bfhsdf sdhf sdfhhjksd fhkbsdd fhkjsdfhbsddfh hsdf hsdfh sdf asdfasd asd asd asdsd 
-                                                                     </div>   
-                                                                </div>    
-                                                            </div>  
+                                                           
+                                                            
+                                                            <h1>Task Management</h1> 
+                                                            {
+                                                                 Object.keys(this.state.teamLeadList).map((key)=> {return this.renderManamgement(key)})
+                                                            }
                                                                   
 
                                                         </div>
-
-
-
-
 
 
 
@@ -183,6 +123,9 @@ export default class ManagerDetails extends React.Component{
                        {/*end tab example*/}
 
                
+                 
+
+
                  
 
             </div>
