@@ -248,6 +248,21 @@ export default class TaskDetails extends Component {
                                     {/*TASK TABLE*/}
                                     <div>
                                         <div className="row">
+                                            <div className="col-md-4">
+                                            </div>    
+                                            <div className="col-md-4" style={{'textAlign':'center'}}>
+                                                <span >
+                                                    <h2><button className = "label myButton">Tasks <i className="fa fa-plus-circle fa-5" aria-hidden="true"></i></button></h2>
+                                                </span>
+                                                <span>
+                                                   
+                                                </span>
+                                            </div>
+                                            <div className="col-md-4">
+                                            </div>    
+                                            
+                                        </div>
+                                        <div className="row">
                                             <div className="col-md-1">
                                                 <div className="checkbox">
                                                     <label>
@@ -256,8 +271,8 @@ export default class TaskDetails extends Component {
                                                     </label>
                                                 </div>
                                             </div>
-                                            <div className="col-md-8" style={{'fontSize':'18px','padding':'8px','':''}}>
-                                                Task description with errors will diaplay here asd asdfsad sdkhbs sadfde fiu
+                                            <div className="col-md-8" style={{'fontSize':'18px','padding':'8px'}}>
+                                                Task description with errors will diaplay here asd asdfsad sdkhbs sadfde fiu asd asd asdg hjasdg asdg asjdg jhasdhj asgdj asjdgjas jdgjas dhjg
                                             </div>
                                             <div className="col-md-3">
                                               <div className="form-group" style={{'width':'125px','float':'right'}}>
@@ -270,7 +285,8 @@ export default class TaskDetails extends Component {
                                                 </select>
                                             </div>
                                             </div>
-                                        </div>    
+                                        </div>  
+                                          
                                     </div>        
                                     
                                     {/*END TASK TABLE*/}
