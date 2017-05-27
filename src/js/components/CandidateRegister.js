@@ -50,8 +50,6 @@ export default class CandidateRegister extends React.Component {
     render() {
         return (
             <div>
-
- jignesh
                 <div className="container-fluid">
 
                     <div className="row">

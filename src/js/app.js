@@ -6,15 +6,18 @@ import {BrowserRouter, Route, Link, Redirect, Switch, withRouter} from 'react-ro
 import createHistory from 'history/createBrowserHistory';
 
 import App from './components/DesignApp';
-import CandidateDetails from './components/CandidateDetails';
 import TaskDetails from './components/TaskDetails';
+import CandidateReg from './components/CandidateRegister';
+import CandidateDetails from './components/CandidateDetails';
+import JobCreate from './components/JobCreate';
+
 
 const history = createHistory();
 
 ReactDOM.render((
         <BrowserRouter>
             <Switch>
-                <Route exact={true} path="/" component={TaskDetails}/>
+                <Route exact={true} path="/" component={CandidateDetails}/>
             </Switch>
         </BrowserRouter>
     ),
