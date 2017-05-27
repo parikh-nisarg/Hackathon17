@@ -9,6 +9,7 @@ import App from './components/DesignApp';
 import TaskDetails from './components/TaskDetails';
 import CandidateReg from './components/CandidateRegister';
 import CandidateDetails from './components/CandidateDetails';
+
 import JobCreate from './components/JobCreate';
 import ManagerDetails from './components/ManagerDetails';
 
@@ -17,6 +18,7 @@ const history = createHistory();
 ReactDOM.render((
         <Router>
             <Switch>
+
                 <Route exact={true} path="/" component={TaskDetails}/>
                 <Route exact={true} path="/app" component={App}/>
                 <Route exact={true} path="/reg" component={CandidateDetails}/>
