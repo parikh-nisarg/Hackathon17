@@ -10,8 +10,8 @@ import HrEmpManagement from './HrEmpManagement';
 import HrClientManagement from './HrClientManagement';
 
 export default class HrManagement extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     render() {
