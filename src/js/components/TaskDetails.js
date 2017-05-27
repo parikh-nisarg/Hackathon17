@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
-import database from '../utils/database';
+import database from './Database';
 
 export default class TaskDetails extends Component {
     constructor() {
@@ -59,7 +59,7 @@ export default class TaskDetails extends Component {
     render() {
         return ( <div>
 
-            <Link to="/app">Design</Link><br/><Link to="/reg">Reg</Link>
+            {/*<Link to="/app">Design</Link><br/><Link to="/reg">Reg</Link>*/}
 
             <div className="container-fluid">
                 <div className="row-fluid">
@@ -80,12 +80,12 @@ export default class TaskDetails extends Component {
                             <div className="tab-content ">
                                 <div className="tab-pane active" id="1">
                                     <div
-                                        style={{'margin-top':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
+                                        style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px','margin-left':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
                                                 <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
                                             </div>
-                                            <div className="col-md-9" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-9" style={{'marginTop':'5px'}}>
                                                                       <span style={{'fontSize':'20px'}}>
                                                                           <strong>
                                                                               Lorem ipsum dolor sit amet, consectetur
@@ -102,7 +102,7 @@ export default class TaskDetails extends Component {
                                         </div>
 
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px'}}>
                                             </div>
                                             <div className="col-md-9">
                                                 asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj
@@ -114,13 +114,13 @@ export default class TaskDetails extends Component {
 
                                     {/*row 2*/}
                                     <div
-                                        style={{'margin-top':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
+                                        style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px','margin-left':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
                                                 <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
                                             </div>
 
-                                            <div className="col-md-9" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-9" style={{'marginTop':'5px'}}>
                                                                       <span style={{'fontSize':'20px'}}>
                                                                           <strong>
                                                                               Lorem ipsum dolor sit amet, consectetur
@@ -137,7 +137,7 @@ export default class TaskDetails extends Component {
                                         </div>
 
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px'}}>
                                             </div>
                                             <div className="col-md-9">
                                                 asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj
@@ -150,13 +150,13 @@ export default class TaskDetails extends Component {
 
                                     {/*row 3*/}
                                     <div
-                                        style={{'margin-top':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
+                                        style={{'marginTop':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px','margin-left':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
                                                 <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
                                             </div>
 
-                                            <div className="col-md-9" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-9" style={{'marginTop':'5px'}}>
                                                                       <span style={{'fontSize':'20px'}}>
                                                                           <strong>
                                                                               Lorem ipsum dolor sit amet, consectetur
@@ -173,7 +173,7 @@ export default class TaskDetails extends Component {
                                         </div>
 
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px'}}>
                                             </div>
                                             <div className="col-md-9">
                                                 asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj
@@ -188,7 +188,7 @@ export default class TaskDetails extends Component {
 
                                 <div className="tab-pane" id="2">
                                     {/* TASK CONTENTS */}
-                                    <div className="container-fluid">
+                                    <div className="container-fluid well" style={{'height':'88px'}}>
                                         <div className="row-fluid">
                                             <div className="row-fluid">
                                                 <div className="col-md-3">
@@ -242,7 +242,38 @@ export default class TaskDetails extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     {/* TASK CONTENT ENDS */}
+
+                                    {/*TASK TABLE*/}
+                                    <div>
+                                        <div className="row">
+                                            <div className="col-md-1">
+                                                <div className="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" />
+                                                        <span className="cr"><i className="cr-icon glyphicon glyphicon-ok"></i></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div className="col-md-8" style={{'fontSize':'18px','padding':'8px','':''}}>
+                                                Task description with errors will diaplay here asd asdfsad sdkhbs sadfde fiu
+                                            </div>
+                                            <div className="col-md-3">
+                                              <div className="form-group" style={{'width':'125px','float':'right'}}>
+                                                <select className="form-control" id="exampleSelect1">
+                                                <option>111111</option>
+                                                <option>22222</option>
+                                                <option>33333</option>
+                                                <option>44444</option>
+                                                <option>55555</option>
+                                                </select>
+                                            </div>
+                                            </div>
+                                        </div>    
+                                    </div>        
+                                    
+                                    {/*END TASK TABLE*/}
                                 </div>
 
 
