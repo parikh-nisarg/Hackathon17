@@ -10,14 +10,14 @@ import TaskDetails from './components/TaskDetails';
 import CandidateReg from './components/CandidateRegister';
 import CandidateDetails from './components/CandidateDetails';
 import JobCreate from './components/JobCreate';
-
+import ManagerDetails from './components/ManagerDetails';
 
 const history = createHistory();
 
 ReactDOM.render((
         <BrowserRouter>
             <Switch>
-                <Route exact={true} path="/" component={CandidateDetails}/>
+                <Route exact={true} path="/" component={ManagerDetails}/>
             </Switch>
         </BrowserRouter>
     ),
