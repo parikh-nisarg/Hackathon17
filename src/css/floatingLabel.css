@@ -59,6 +59,26 @@ form.go-bottom label {
   left: 0;
   width: 100%;
 }
+
+/*gobottn login*/
+form.go-bottomLogin input, form.go-bottomLogin textarea {
+  padding: 12px 12px 12px 12px;
+}
+form.go-bottomLogin label {
+  top: 0;
+  left: 0;
+  width: 300px;
+}
+form.go-bottomLogin input:focus, form.go-bottomLogin textarea:focus {
+  padding: 4px 6px 20px 6px;
+}
+form.go-bottomLogin input:focus + label, form.go-bottomLogin textarea:focus + label {
+  top: 100%;
+  margin-top: -16px;
+}
+
+/*gobottn login*/
+
 form.go-bottom input:focus, form.go-bottom textarea:focus {
   padding: 4px 6px 20px 6px;
 }
