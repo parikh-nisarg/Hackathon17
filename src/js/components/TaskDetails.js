@@ -30,12 +30,12 @@ export default class TaskDetails extends Component {
                             <div className="tab-content ">
                                 <div className="tab-pane active" id="1">
                                     <div
-                                        style={{'margin-top':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
+                                        style={{'marginTop':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px','margin-left':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px','margin-left':'5px'}}>
                                                 <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
                                             </div>
-                                            <div className="col-md-9" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-9" style={{'marginTop':'5px'}}>
                                                                       <span style={{'fontSize':'20px'}}>
                                                                           <strong>
                                                                               Lorem ipsum dolor sit amet, consectetur
@@ -52,7 +52,7 @@ export default class TaskDetails extends Component {
                                         </div>
 
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px'}}>
                                             </div>
                                             <div className="col-md-9">
                                                 asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj
@@ -64,13 +64,13 @@ export default class TaskDetails extends Component {
 
                                     {/*row 2*/}
                                     <div
-                                        style={{'margin-top':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
+                                        style={{'marginTop':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px','margin-left':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px','margin-left':'5px'}}>
                                                 <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
                                             </div>
 
-                                            <div className="col-md-9" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-9" style={{'marginTop':'5px'}}>
                                                                       <span style={{'fontSize':'20px'}}>
                                                                           <strong>
                                                                               Lorem ipsum dolor sit amet, consectetur
@@ -87,7 +87,7 @@ export default class TaskDetails extends Component {
                                         </div>
 
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px'}}>
                                             </div>
                                             <div className="col-md-9">
                                                 asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj
@@ -100,13 +100,13 @@ export default class TaskDetails extends Component {
 
                                     {/*row 3*/}
                                     <div
-                                        style={{'margin-top':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
+                                        style={{'marginTop':'25px','border':'1px solid #e8dddd', 'border-radius': '8px'}}>
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px','margin-left':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px','margin-left':'5px'}}>
                                                 <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
                                             </div>
 
-                                            <div className="col-md-9" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-9" style={{'marginTop':'5px'}}>
                                                                       <span style={{'fontSize':'20px'}}>
                                                                           <strong>
                                                                               Lorem ipsum dolor sit amet, consectetur
@@ -123,7 +123,7 @@ export default class TaskDetails extends Component {
                                         </div>
 
                                         <div className="row">
-                                            <div className="col-md-2" style={{'margin-top':'5px'}}>
+                                            <div className="col-md-2" style={{'marginTop':'5px'}}>
                                             </div>
                                             <div className="col-md-9">
                                                 asf asfb habfdhj hjdfhj adhjfhj fjhbsdhjfjbsdfjbsdjfbsdhjfbjhsdfhjhj

@@ -27,7 +27,7 @@ export default class JobCreate extends React.Component {
 
         let objData = { title: title, description: description, role: position, skills:skill, 
                         totalRequirements: requiredPost, location: location, status:'open',
-                        postedDate: (new Date()), isPosted:false, isApproved:false, appliedUserIds:''  };
+                        postedDate: (new Date()), isPosted:false, isApproved:false, appliedUserIds:'' ,id:key, createdBy:'' };
 
 
         objDatabase.dataOperation(key, objData).then((result) => {
