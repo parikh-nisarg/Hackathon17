@@ -32,7 +32,7 @@ gulp.task('scripts', function () {
 
 
 gulp.task('watch', function () {
-	gulp.watch(['./src/js/*.js'], ['scripts'], browserSync.reload);
+	gulp.watch(['./src/js/**/*.js'], ['scripts'], browserSync.reload);
 });
 
 gulp.task('browser-sync', function () {
