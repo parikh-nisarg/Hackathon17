@@ -6,6 +6,10 @@ export default class JobRequisition extends React.Component{
         super();
     }
 
+    componentDidMount(){
+       
+    }
+
     showJob(){
         debugger;
         this.props.showJob(this.props.data.id);
@@ -14,7 +18,7 @@ export default class JobRequisition extends React.Component{
     render(){
         return(
             <div>
-                <div key={this.props.id} style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
+                <div style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
                                                                 <div className="row" >
                                                                     <div className="col-md-2" style={{'marginTop':'5px','marginLeft':'5px'}}>
                                                                             <img src="src/images/JobOpenings-Blue.png" style={{'width':'150px'}}/>
@@ -31,6 +35,7 @@ export default class JobRequisition extends React.Component{
                                                                             &nbsp;&nbsp;
                                                                             {/*<span className="label btnbrowse" style={{'cursor':'pointer'}}>Approve</span>*/}
                                                                             <button type="button" className="btn btn-primary btn-sm">Approve</button>
+                                                                            <button className="btn btn-default" data-toggle="confirmation">Confirmation</button>
                                                                         </strong>
                                                                       </span>                                                                      
                                                                     </div>
@@ -46,15 +51,13 @@ export default class JobRequisition extends React.Component{
                                                                 </div>    
                                                             </div> 
 
-                                                            {/*//popup*/}
-
-                  <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                                            
+                  <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog"
                                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div className="modal-dialog" role="document">
                                                     <div className="modal-content">
                                                         <div className="modal-header">
-                                                            <h5 className="modal-title" id="exampleModalLabel">New
-                                                                message</h5>
+                                                            <h5 className="modal-title" id="exampleModalLabel">JOB REQUISITION APPROVE</h5>
                                                             <button type="button" className="close" data-dismiss="modal"
                                                                     aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
