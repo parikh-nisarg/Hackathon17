@@ -5,11 +5,61 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
+import database from '../utils/database';
+
 export default class TaskDetails extends Component {
+    constructor() {
+        super();
+
+        this.state = ({occupiedTeamLeadWork: [], clientIds: [], projectIds: [], moduleIds: [], employeeIds: []});
+
+        let teamLeadId = "4BpEBnypYhfMzVqQ9oWkgXy4Sox1";
+
+        let personDetails = new database("UserDetails");
+        personDetails.getList().then((data) => {
+            let allUsers = data.val();
+            if (allUsers) {
+                allUsers = Object.keys(allUsers).map((key) => {
+                    return allUsers[key]
+                });
+                let occupiedTeamLead = allUsers.filter((obj) => {
+                    if (obj.workingDetails) {
+                        return obj.workingDetails.teamLeadId == teamLeadId
+                    }
+                });
+                let clientIds = occupiedTeamLead.map((obj) => {
+                    return obj.workingDetails.clientId
+                });
+                clientIds = $.unique(clientIds);
+                let projectIds = occupiedTeamLead.map((obj) => {
+                    return obj.workingDetails.projectId
+                });
+                projectIds = $.unique(projectIds);
+                let moduleIds = occupiedTeamLead.map((obj) => {
+                    return obj.workingDetails.moduleId
+                });
+                moduleIds = $.unique(moduleIds);
+                let employeeIds = occupiedTeamLead.map((obj) => {
+                    return obj.id
+                });
+
+                this.setState({
+                    occupiedTeamLeadWork: occupiedTeamLead,
+                    clientIds,
+                    projectIds,
+                    moduleIds,
+                    employeeIds
+                });
+            }
+        });
+
+        // let occupiedTeamLeadInfo = _database.getTeamLeadWorkingDetails("4BpEBnypYhfMzVqQ9oWkgXy4Sox1");
+    }
+
     render() {
         return ( <div>
 
-            <Link to="/">Home</Link><br/><Link to="/reg">Reg</Link>
+            <Link to="/app">Design</Link><br/><Link to="/reg">Reg</Link>
 
             <div className="container-fluid">
                 <div className="row-fluid">
@@ -141,10 +191,10 @@ export default class TaskDetails extends Component {
                                     <div className="container-fluid">
                                         <div className="row-fluid">
                                             <div className="row-fluid">
-                                                <div className="col-md-6">
+                                                <div className="col-md-3">
                                                     <div className="form-group">
-                                                        <label htmlFor="exampleSelect1">Example select</label>
-                                                        <select className="form-control" id="exampleSelect1">
+                                                        <label htmlFor="dlClients">Clients</label>
+                                                        <select className="form-control" id="dlClients">
                                                             <option>1</option>
                                                             <option>2</option>
                                                             <option>3</option>
@@ -153,10 +203,34 @@ export default class TaskDetails extends Component {
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-6">
+                                                <div className="col-md-3">
                                                     <div className="form-group">
-                                                        <label htmlFor="exampleSelect1">Example select</label>
-                                                        <select className="form-control" id="exampleSelect1">
+                                                        <label htmlFor="dlProjects">Projects</label>
+                                                        <select className="form-control" id="dlProjects">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-3">
+                                                    <div className="form-group">
+                                                        <label htmlFor="dlModules">Modules</label>
+                                                        <select className="form-control" id="dlModules">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-3">
+                                                    <div className="form-group">
+                                                        <label htmlFor="dlEmployees">Employees</label>
+                                                        <select className="form-control" id="dlEmployees">
                                                             <option>1</option>
                                                             <option>2</option>
                                                             <option>3</option>

@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import firebase from 'firebase';
@@ -75,7 +73,7 @@ export default class Database extends React.Component {
         return promise;
     }
 
-    getData(key){
+    getData(key) {
         let promise = new Promise((resolve, reject) => {
             let dbRef = firebase.database().ref(`${this.table}/${key}`);
             dbRef.on('value', (snap) => {
@@ -90,7 +88,7 @@ export default class Database extends React.Component {
         return promise;
     }
 
-    dataOperation(key,objData) {  // insert, update, delete
+    dataOperation(key, objData) {  // insert, update, delete
         let promise = new Promise((resolve, reject) => {
             debugger;
             let dbRef = firebase.database().ref(`${this.table}/`);
@@ -105,5 +103,51 @@ export default class Database extends React.Component {
         });
         return promise;
     }
+
+    // getTeamLeadWorkingDetails(teamLeadId) {
+    //     let _teamLeadId = teamLeadId;
+    //
+    //     this.table = "UserDetails";
+    //     this.getList().then((data) => {
+    //         let allUsers = data.val();
+    //         allUsers = Object.keys(allUsers).map((key) => {
+    //             return allUsers[key]
+    //         });
+    //         let occupiedTeamLead = allUsers.filter((obj) => {
+    //             if (obj.workingDetails) {
+    //                 return obj.workingDetails.teamLeadId == _teamLeadId
+    //             }
+    //         });
+    //         return occupiedTeamLead;
+    //     });
+    // }
+
+    // fetchTeamLeadInfo(teamLeadId) {
+    //     let _this = this;
+    //
+    //     function* myData() {    //Generator Fn
+    //         this.setState("ClientDetails");
+    //         const clientInfo = yield _this.getList();
+    //         this.setState("JobDetails");
+    //         const jobInfo = yield _this.getList();
+    //         return [{clientInfo: clientInfo}, {jobInfo: jobInfo}];
+    //     }
+    //
+    //     let _data = myData();
+    //     let _clientInfo = _data.next();
+    //     let _jobInfo = _data.next();
+    //
+    //     if (_clientInfo && _jobInfo) {
+    //         debugger;
+    //     }
+    // }
+
+    // async fetchTeamLeadInfo(teamLeadId) {
+    //     let obj = [];
+    //     this.table = "ClientDetails";
+    //     await this.getList().then((data) => { obj.push({clientInfo: data.val()}) });
+    //
+    //     return obj;
+    // }
 
 }

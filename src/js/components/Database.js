@@ -134,6 +134,7 @@ export default class Database extends React.Component {
                     console.log('Upload completed successfully, now we can get the download URL');
                     let downloadURL = uploadTask.snapshot.downloadURL;
                     var tempObj = {};
+                    tempObj.id = key;
                     tempObj.name = objData.name;
                     tempObj.resumeUrl = downloadURL;
                     tempObj.address = objData.address;
