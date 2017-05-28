@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import LoginForm from './LoginForm';
 
 export default class LandingPage extends React.Component{
@@ -16,11 +15,8 @@ export default class LandingPage extends React.Component{
     render(){
         return(
             <div>
-
-
                 <nav className="navbar navbar-default headerBackground">
                     <div className="container-fluid">
-                    
                         <div className="navbar-header">
                         <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                             <span className="sr-only">Toggle navigation</span>
@@ -30,8 +26,6 @@ export default class LandingPage extends React.Component{
                         </button>
                         <a className="navbar-brand" href="#">Cakewalk</a>
                         </div>
-
-                    
                         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul className="nav navbar-nav">
                             <li className="active"><a href="#">Home</a></li>
@@ -39,7 +33,6 @@ export default class LandingPage extends React.Component{
                             <li><a href="#">Career</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul>
-                        
                            <button className="btn btn-danger navbar-btn navbar-right" onClick = {this.showLoginRegister.bind(this)}>Login / Sign Up</button>
                         </div>
                     </div>

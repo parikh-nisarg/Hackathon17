@@ -13,8 +13,8 @@ export default class CandidateDetails extends React.Component {
         };
     }
 
-
     componentDidMount() {
+
         let objDatabase = new Database('JobDetails');
         objDatabase.getList().then((result) => {
             let dataList = result.val();
@@ -166,7 +166,7 @@ export default class CandidateDetails extends React.Component {
                                     </div>
 
                                     <div className="tab-pane" id="3">
-                                        <CandidateRegister/>
+                                        <CandidateRegister />
                                     </div>
                                 </div>
                             </div>

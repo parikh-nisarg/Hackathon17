@@ -134,7 +134,7 @@ export default class Database {
                     tempObj.email = objData.email;
                     tempObj.address = objData.address;
                     tempObj.contact = objData.contact;
-                    tempObj.skill = objData.skill;
+                    tempObj.skills = objData.skills;
                     tempObj.workingDetails = [{}];
                     tempObj.performanceDetails = [{}];
                     tempObj.salaryDetails = [{}];
