@@ -19,7 +19,7 @@ export default class HrManagement extends React.Component {
             <div>
                 {/*<HrJobPosting/>*/}
                 <HrJobManagement/>
-                <HrEmpManagement/>
+                {/*<HrEmpManagement/>*/}
                 <HrClientManagement/>
             </div>
 
