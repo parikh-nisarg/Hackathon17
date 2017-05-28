@@ -15,9 +15,8 @@ const config = {
 
 firebase.initializeApp(config);
 
-export default class Database extends React.Component {
+export default class Database {
     constructor(table = "") {
-        super();
         this.table = table;
     }
 
@@ -91,9 +90,7 @@ export default class Database extends React.Component {
     }
 
     dataOperation(key, objData) {  // insert, update, delete
-        debugger;
         let promise = new Promise((resolve, reject) => {
-            debugger;
             let dbRef = firebase.database().ref(`${this.table}/`);
             let newRef = dbRef.child(key).set(objData);
             if (newRef) {
@@ -136,10 +133,25 @@ export default class Database extends React.Component {
                     var tempObj = {};
                     tempObj.id = key;
                     tempObj.name = objData.name;
-                    tempObj.resumeUrl = downloadURL;
+                    tempObj.email = objData.email;
                     tempObj.address = objData.address;
                     tempObj.contact = objData.contact;
                     tempObj.skill = objData.skill;
+                    tempObj.workingDetails = [{}];
+                    tempObj.performanceDetails = [{}];
+                    tempObj.salaryDetails = [{}];
+                    tempObj.settlementDetails = [{}];
+                    tempObj.dateOfJoining = "";
+                    tempObj.dateOfLeaving = "";
+                    tempObj.ExpYear = "";
+                    tempObj.roleId = "",
+                        tempObj.isBlackList = false;
+                    tempObj.resumeUrl = downloadURL;
+                    tempObj.panCardUrl = "";
+                    tempObj.aadharCardUrl = "";
+
+
+
 
                     let dbRef = firebase.database().ref(`${_this.table}/`);
                     let newRef = dbRef.child(key).set(tempObj);
@@ -159,7 +171,44 @@ export default class Database extends React.Component {
 
     }
 
-     searchData(searchText,value) {
+    fileUpload(file) {
+        var _this = this;
+        let promise = new Promise((resolve, reject) => {
+
+            let storage = firebase.storage();
+            let storageRef = storage.ref();
+        
+            var type = file.type.indexOf('image') > 0 ? 'image/jpeg' : 'application/pdf';
+            let metadata = {
+                contentType: type,
+            };
+            let uploadTask = storageRef.child('images/' + file.name).put(file, metadata);
+
+            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                function (snapshot) {
+                    let progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                },
+                function (error) {
+
+                },
+                function () {
+                    console.log('Upload completed successfully, now we can get the download URL');
+                    let downloadURL = uploadTask.snapshot.downloadURL;
+                    if (downloadURL !="") {
+                        resolve(downloadURL);
+                    }
+                    else {
+                        reject("error during uploading");
+                    }
+                });
+
+        });
+        return promise;
+
+    }
+
+    searchData(searchText, value) {
 
         let promise = new Promise((resolve, reject) => {
             let dbRef = firebase.database().ref(`${this.table}/`);

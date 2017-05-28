@@ -16,8 +16,8 @@ export default class HrManagement extends React.Component {
 
     render() {
         return (
-            <div>Hr Management
-                <HrJobPosting/>
+            <div>
+                {/*<HrJobPosting/>*/}
                 <HrJobManagement/>
                 <HrEmpManagement/>
                 <HrClientManagement/>

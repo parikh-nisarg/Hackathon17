@@ -27,9 +27,9 @@ export default class HrJobPosting extends React.Component {
             var tempData = [];
             Object.keys(dataList).map((key) => {
                 var objData = dataList[key]
-                // if (!objData.isPosted) {
+               if (!objData.isPosted) {
                 tempData.push(objData);
-                // }
+                }
             })
             this.state.HrNonPostedJobs = tempData;
             this.setState({ HrNonPostedJobs: this.state.HrNonPostedJobs });
