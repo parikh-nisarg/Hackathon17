@@ -36,7 +36,7 @@ export default class CandidateRegister extends React.Component {
 
         //   let objData = { email: email, password: psw, name: name, resume: resume };
 
-        let objData = { name: name, address: address, email: email, contact: contact, skill, resume: resume, password: password };
+        let objData = { name: name, address: address, email: email, contact: contact, skill, resume: resume, password: password, roleId:6 };
 
 
         objDatabase.userRegistration(objData).then((result) => {
