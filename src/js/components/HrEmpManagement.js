@@ -237,7 +237,7 @@ export default class HrEmpManagement extends React.Component {
         return (
             <div>
                 <input type="text" id="txtSearch" /> <button type="button" onClick={this.searchUser.bind(this)}> Search </button>
-                <div  >
+                <div>
                     {
                         Object.keys(this.state.displayUsers).map((key) => { return this.displayUser(key) })
                     }
