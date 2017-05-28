@@ -28,28 +28,28 @@ export default class UserProfile extends React.Component{
                                         </form>
 									</div>
 										<div className="form-group formLogin">
-										<form className="go-bottomLogin" style={{'marginTop':'0'}}>                            
+										<div className="go-bottomLogin" style={{'marginTop':'0'}}>                            
                                             <div>
                                                 <input id="name" name="name" type="text" readOnly="true" required style={{'width':'300px'}} value={this.props.data.email}/>
                                                 <label htmlFor="name">Email</label>
                                             </div>
-                                        </form>
+                                        </div>
 									</div>
 										<div className="form-group formLogin">
-										<form className="go-bottomLogin" style={{'marginTop':'0'}}>                            
+										<div className="go-bottomLogin" style={{'marginTop':'0'}}>                            
                                             <div>
                                                 <input id="name" name="name" type="password" required style={{'width':'300px'}}/>
                                                 <label htmlFor="name">Password</label>
                                             </div>
-                                        </form>
+                                        </div>
 									</div>
 										<div className="form-group formLogin">
-										<form className="go-bottomLogin" style={{'marginTop':'0'}}>                            
+										<div className="go-bottomLogin" style={{'marginTop':'0'}}>                            
                                             <div>
                                                 <input id="name" name="name" type="password" required style={{'width':'300px'}}/>
                                                 <label htmlFor="name">Confirm Password</label>
                                             </div>
-                                        </form>
+                                        </div>
 									</div>
 									<div className="form-group">
 										<div className="row">

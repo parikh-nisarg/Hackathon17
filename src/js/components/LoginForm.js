@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Database from './Database';
 
 export default class LoginForm extends React.Component{
     constructor(){
@@ -29,6 +30,20 @@ export default class LoginForm extends React.Component{
 
     }
 
+    loginUser(){
+        
+        let objData = {email:document.getElementById('uname').value, password:document.getElementById('pwd').value};
+        
+        let objDatabase = new Database("JobDetails");   
+
+        objDatabase.userLogin(objData).then((result) => {
+            alert("Login successfull....");
+            window.location = '/TaskDetails';
+        }, (error) => {
+            alert(error);
+        })
+    }
+
     render(){
         return(
             <div>
@@ -54,17 +69,17 @@ export default class LoginForm extends React.Component{
 							<div className="col-lg-12">
 								<form id="login-form" action="" method="post" role="form" style={{'display': 'block'}}>
 									<div className="form-group formLogin">
-										<form className="go-bottomLogin" style={{'margin-top':'0'}}>                            
+										<form className="go-bottomLogin" style={{'marginTop':'0'}}>                            
                                             <div>
-                                                <input id="name" name="name" type="text" required style={{'width':'300px'}}/>
+                                                <input id="uname" name="name" type="text" required style={{'width':'300px'}}/>
                                                 <label htmlFor="name">Username</label>
                                             </div>
                                         </form>
 									</div>
 									<div className="form-group formLogin">
-										<form className="go-bottomLogin formLogin" style={{'margin-top':'0'}}>                           
+										<form className="go-bottomLogin formLogin" style={{'marginTop':'0'}}>                           
                                             <div>
-                                                <input id="name" name="name" type="password" required  style={{'width':'300px'}}/>
+                                                <input id="pwd" name="name" type="password" required  style={{'width':'300px'}}/>
                                                 <label htmlFor="name">Password</label>
                                             </div>
                                         </form>
@@ -73,7 +88,9 @@ export default class LoginForm extends React.Component{
 									<div className="form-group">
 										<div className="row">
 											<div className="col-sm-6 col-sm-offset-3">
-												<button type="button" className="btn btnbrowse" style={{'width':'180px'}}>Login</button>
+												<button type="button" className="btn btnbrowse" style={{'width':'180px'}}
+                                                onClick={this.loginUser.bind(this)}
+                                                >Login</button>
 											</div>
 										</div>
 									</div>
@@ -81,7 +98,7 @@ export default class LoginForm extends React.Component{
 								</form>
 								<form id="register-form" action="" method="post" role="form" style={{'display':'none'}}>
 									<div className="form-group formLogin">
-										<form className="go-bottomLogin" style={{'margin-top':'0'}}>                            
+										<form className="go-bottomLogin" style={{'marginTop':'0'}}>                            
                                             <div>
                                                 <input id="name" name="name" type="text" required style={{'width':'300px'}}/>
                                                 <label htmlFor="name">Username</label>
@@ -89,7 +106,7 @@ export default class LoginForm extends React.Component{
                                         </form>
 									</div>
 										<div className="form-group formLogin">
-										<form className="go-bottomLogin" style={{'margin-top':'0'}}>                            
+										<form className="go-bottomLogin" style={{'marginTop':'0'}}>                            
                                             <div>
                                                 <input id="name" name="name" type="text" required style={{'width':'300px'}}/>
                                                 <label htmlFor="name">Email</label>
@@ -97,7 +114,7 @@ export default class LoginForm extends React.Component{
                                         </form>
 									</div>
 										<div className="form-group formLogin">
-										<form className="go-bottomLogin" style={{'margin-top':'0'}}>                            
+										<form className="go-bottomLogin" style={{'marginTop':'0'}}>                            
                                             <div>
                                                 <input id="name" name="name" type="password" required style={{'width':'300px'}}/>
                                                 <label htmlFor="name">Password</label>
@@ -105,7 +122,7 @@ export default class LoginForm extends React.Component{
                                         </form>
 									</div>
 										<div className="form-group formLogin">
-										<form className="go-bottomLogin" style={{'margin-top':'0'}}>                            
+										<form className="go-bottomLogin" style={{'marginTop':'0'}}>                            
                                             <div>
                                                 <input id="name" name="name" type="password" required style={{'width':'300px'}}/>
                                                 <label htmlFor="name">Confirm Password</label>
