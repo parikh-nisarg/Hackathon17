@@ -13,7 +13,7 @@ export default class TaskDetails extends Component {
         super();
 
         this.state = ({
-            teamLeadId: "4BpEBnypYhfMzVqQ9oWkgXy4Sox1",
+            teamLeadId: "",
             occupiedTeamLeadWork: [],
             clientInfo: [],
             projectInfo: [],
@@ -25,7 +25,10 @@ export default class TaskDetails extends Component {
     }
 
     componentDidMount() {
-        let teamLeadId = "4BpEBnypYhfMzVqQ9oWkgXy4Sox1";
+        let userId = this.props.match.params.id;
+        if (userId != "") {
+            this.setState({teamLeadId: userId})
+        }
 
         let personDetails = new database("UserDetails");
         personDetails.getList().then((data) => {
@@ -36,7 +39,7 @@ export default class TaskDetails extends Component {
                 });
                 let occupiedTeamLead = allUsers.filter((obj) => {
                     if (obj.workingDetails) {
-                        return obj.workingDetails.teamLeadId == teamLeadId
+                        return obj.workingDetails.teamLeadId == this.state.teamLeadId
                     }
                 });
                 let clientIds = occupiedTeamLead.map((obj) => {
@@ -65,7 +68,7 @@ export default class TaskDetails extends Component {
             }
         });
 
-        this.setAllTaskState(teamLeadId);
+        this.setAllTaskState(this.state.teamLeadId);
 
         //set task status state
         let taskStatusDetails = new database("TaskStatusDetails");
@@ -110,8 +113,6 @@ export default class TaskDetails extends Component {
                 var _projectInfo = data.val();
                 projectInfo.push(_projectInfo);
 
-                this.setState({projectInfo});
-
                 let modulefromProject = _projectInfo.modules.filter((module) => {
                     if (moduleIds.toString().includes(module.id.toString())) {
                         let isModuleStateExist = this.state.moduleInfo.filter((stateModule) => {
@@ -120,6 +121,7 @@ export default class TaskDetails extends Component {
                         if (isModuleStateExist.length == 0) {
                             moduleInfo.push(module);
 
+                            this.setState({projectInfo});
                             this.setState({moduleInfo});
                         }
                     }
@@ -273,17 +275,15 @@ export default class TaskDetails extends Component {
                                     {/*new*/}
                                     <div
                                         style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
-                                        
 
 
-                                              
-                                                <div className="row">
-                                                    <div className="col-md-2">
-                                                        <img src="src/images/jobSearch.jpg" style={{'width':'150px'}}/>
-                                                    </div> 
-                                                        <div className="col-md-10">
-                                                            <div className="row" style={{'paddingBottom':'6px'}}>
-                                                                <div className="col-md-10">
+                                        <div className="row">
+                                            <div className="col-md-2">
+                                                <img src="src/images/jobSearch.jpg" style={{'width':'150px'}}/>
+                                            </div>
+                                            <div className="col-md-10">
+                                                <div className="row" style={{'paddingBottom':'6px'}}>
+                                                    <div className="col-md-10">
                                                                      <span style={{'fontSize':'20px'}}>
                                                                           <strong>
                                                                               Lorem ipsum dolor sit amet, consectetur
@@ -291,94 +291,103 @@ export default class TaskDetails extends Component {
                                                                               &nbsp;&nbsp;
                                                                           </strong>
                                                                       </span>
-                                                                </div>    
-                                                                
-                                                                <div className="col-md-2">
+                                                    </div>
+
+                                                    <div className="col-md-2">
                                                                                <span
-                                                                              className="label label-info" style={{'fontSize':'12'}}>Full Time</span>
-                                                                              &nbsp;&nbsp;<span
-                                                                              className="label btnbrowse"
-                                                                              style={{'cursor':'pointer','fontSize':'12'}}>Apply</span>
-                                                                </div>    
-                                                            </div>
-                                                            
-                                                            <div className="row">
-                                                                <div className="col-md-12">
-                                                                    asasdasdasd asd asd asdfn kjasdjkas d kdjfkj hdf sdkhfkjh hsdfkhjh sdjkfkh sdkhfj sdfk df sdljkf sdfl df
-                                                                    alsddlj najklj asddfjk fdjkkj sdjkfjk jsdjfkjl jsjdfjjl sdf sdfuo ujsdfujh usdfuo osdfou sdofo osdf end
-                                                                    asd asdlj nasdjkbndkhkh hkaskgdhk khasdhkghk assdghjk ashjkdgahj dshgdhashdj asd
-                                                                </div>
-                                                            </div> 
-                                                            
-                                                            <div className="row" style={{'paddingTop':'14px'}}>
-                                                                <div className="col-md-4">
-                                                                    <span style={{'color':'grey'}}>Location : PUNE</span>&nbsp;&nbsp;
-                                                                    
-                                                                </div>
-                                                                <div className="col-md-4">
-                                                                <span style={{'color':'grey'}}>Skills  : ASP.NET, JQuery</span>
-                                                                </div>
-                                                                
-                                                            </div>       
-                                                    </div>    
+                                                                                   className="label label-info"
+                                                                                   style={{'fontSize':'12'}}>Full Time</span>
+                                                        &nbsp;&nbsp;<span
+                                                        className="label btnbrowse"
+                                                        style={{'cursor':'pointer','fontSize':'12'}}>Apply</span>
+                                                    </div>
                                                 </div>
-                                               </div> 
-                                            {/*End new*/}    
-                                              {/*new*/}
+
+                                                <div className="row">
+                                                    <div className="col-md-12">
+                                                        asasdasdasd asd asd asdfn kjasdjkas d kdjfkj hdf sdkhfkjh
+                                                        hsdfkhjh sdjkfkh sdkhfj sdfk df sdljkf sdfl df
+                                                        alsddlj najklj asddfjk fdjkkj sdjkfjk jsdjfkjl jsjdfjjl sdf
+                                                        sdfuo ujsdfujh usdfuo osdfou sdofo osdf end
+                                                        asd asdlj nasdjkbndkhkh hkaskgdhk khasdhkghk assdghjk ashjkdgahj
+                                                        dshgdhashdj asd
+                                                    </div>
+                                                </div>
+
+                                                <div className="row" style={{'paddingTop':'14px'}}>
+                                                    <div className="col-md-4">
+                                                        <span
+                                                            style={{'color':'grey'}}>Location : PUNE</span>&nbsp;&nbsp;
+
+                                                    </div>
+                                                    <div className="col-md-4">
+                                                        <span style={{'color':'grey'}}>Skills  : ASP.NET, JQuery</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/*End new*/}
+                                    {/*new*/}
                                     <div
                                         style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
-                                        
 
 
-                                              
-                                                <div className="row">
-                                                    <div className="col-md-2">
-                                                        <img src="src/images/jobSearch.jpg" style={{'width':'150px'}}/>
-                                                    </div> 
-                                                        <div className="col-md-10">
-                                                            <div className="row" style={{'paddingBottom':'6px'}}>
-                                                                <div className="col-md-10">
+                                        <div className="row">
+                                            <div className="col-md-2">
+                                                <img src="src/images/jobSearch.jpg" style={{'width':'150px'}}/>
+                                            </div>
+                                            <div className="col-md-10">
+                                                <div className="row" style={{'paddingBottom':'6px'}}>
+                                                    <div className="col-md-10">
                                                                      <span style={{'fontSize':'20px'}}>
                                                                           <strong>
-                                                                                Required Team Leader urgent base, consectetur
-                                                                                adipisicing elit.
-                                                                                &nbsp;&nbsp;
+                                                                              Required Team Leader urgent base,
+                                                                              consectetur
+                                                                              adipisicing elit.
+                                                                              &nbsp;&nbsp;
                                                                           </strong>
                                                                       </span>
-                                                                </div>    
-                                                                
-                                                                <div className="col-md-2">
+                                                    </div>
+
+                                                    <div className="col-md-2">
                                                                                <span
-                                                                              className="label label-info" style={{'fontSize':'12'}}>Full Time</span>
-                                                                              &nbsp;&nbsp;<span
-                                                                              className="label btnbrowse"
-                                                                              style={{'cursor':'pointer','fontSize':'12'}}>Apply</span>
-                                                                </div>    
-                                                            </div>
-                                                            
-                                                            <div className="row">
-                                                                <div className="col-md-12">
-                                                                    asasdasdasd asd asd asdfn kjasdjkas d kdjfkj hdf sdkhfkjh hsdfkhjh sdjkfkh sdkhfj sdfk df sdljkf sdfl df
-                                                                    alsddlj najklj asddfjk fdjkkj sdjkfjk jsdjfkjl jsjdfjjl sdf sdfuo ujsdfujh usdfuo osdfou sdofo osdf end
-                                                                    asd asdlj nasdjkbndkhkh hkaskgdhk khasdhkghk assdghjk ashjkdgahj dshgdhashdj asd
-                                                                </div>
-                                                            </div> 
-                                                            
-                                                            <div className="row" style={{'paddingTop':'14px'}}>
-                                                                <div className="col-md-4">
-                                                                    <span style={{'color':'grey'}}>Location : PUNE</span>&nbsp;&nbsp;
-                                                                    
-                                                                </div>
-                                                                <div className="col-md-4">
-                                                                <span style={{'color':'grey'}}>Skills  : ASP.NET, JQuery</span>
-                                                                </div>
-                                                                
-                                                            </div>       
-                                                    </div>    
+                                                                                   className="label label-info"
+                                                                                   style={{'fontSize':'12'}}>Full Time</span>
+                                                        &nbsp;&nbsp;<span
+                                                        className="label btnbrowse"
+                                                        style={{'cursor':'pointer','fontSize':'12'}}>Apply</span>
+                                                    </div>
                                                 </div>
-                                               </div> 
-                                            {/*End new*/}       
-                                            
+
+                                                <div className="row">
+                                                    <div className="col-md-12">
+                                                        asasdasdasd asd asd asdfn kjasdjkas d kdjfkj hdf sdkhfkjh
+                                                        hsdfkhjh sdjkfkh sdkhfj sdfk df sdljkf sdfl df
+                                                        alsddlj najklj asddfjk fdjkkj sdjkfjk jsdjfkjl jsjdfjjl sdf
+                                                        sdfuo ujsdfujh usdfuo osdfou sdofo osdf end
+                                                        asd asdlj nasdjkbndkhkh hkaskgdhk khasdhkghk assdghjk ashjkdgahj
+                                                        dshgdhashdj asd
+                                                    </div>
+                                                </div>
+
+                                                <div className="row" style={{'paddingTop':'14px'}}>
+                                                    <div className="col-md-4">
+                                                        <span
+                                                            style={{'color':'grey'}}>Location : PUNE</span>&nbsp;&nbsp;
+
+                                                    </div>
+                                                    <div className="col-md-4">
+                                                        <span style={{'color':'grey'}}>Skills  : ASP.NET, JQuery</span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/*End new*/}
+
 
                                 </div>
 
@@ -391,9 +400,9 @@ export default class TaskDetails extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="dlClients">Clients</label>
                                                         <select className="form-control" id="dlClients">
-                                                            {this.state.clientInfo.map((client) => {
+                                                            {this.state.clientInfo.length > 0 ? this.state.clientInfo.map((client) => {
                                                                 return this.renderOptions(client)
-                                                            })}
+                                                            }) : ""}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -401,9 +410,9 @@ export default class TaskDetails extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="dlProjects">Projects</label>
                                                         <select className="form-control" id="dlProjects">
-                                                            {this.state.projectInfo.map((project) => {
+                                                            {this.state.projectInfo.length > 0 ? this.state.projectInfo.map((project) => {
                                                                 return this.renderOptions(project)
-                                                            })}
+                                                            }) : ""}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -411,9 +420,9 @@ export default class TaskDetails extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="dlModules">Modules</label>
                                                         <select className="form-control" id="dlModules">
-                                                            {this.state.moduleInfo.map((module) => {
+                                                            {!$.isEmptyObject(this.state.moduleInfo) ? this.state.moduleInfo.map((module) => {
                                                                 return this.renderOptions(module)
-                                                            })}
+                                                            }) : ""}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -421,9 +430,9 @@ export default class TaskDetails extends Component {
                                                     <div className="form-group">
                                                         <label htmlFor="dlEmployees">Employees</label>
                                                         <select className="form-control" id="dlEmployees">
-                                                            {this.state.occupiedTeamLeadWork.map((emp) => {
+                                                            {this.state.occupiedTeamLeadWork.length > 0 ? this.state.occupiedTeamLeadWork.map((emp) => {
                                                                 return this.renderOptions(emp)
-                                                            })}
+                                                            }) : ""}
                                                         </select>
                                                     </div>
                                                 </div>

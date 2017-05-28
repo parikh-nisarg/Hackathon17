@@ -9,36 +9,35 @@ export default class EmployeeManagement extends React.Component {
     constructor() {
         super();
 
-        //Employee state is temporary for now......
-        const employeeDetails = {
-            email: "nisarg@cakewalk.in",
-            id: "5UKSFBvpi7OgDS2Ncx0c8hLg9t62",
-            isResumeApproved: false,
-            name: "Jignesh",
-            resumeUrl: "https://firebasestorage.googleapis.com/v0/b/es6app.appspot.com/o/images%2FSyllabus-of-Gujarat-Administrative-Service-Class-1-and-Gujarat-Civil-Services-Class-1-and-Class-2.pdf?alt=media&token=0438f7f3-7263-4f37-b206-6a44c5be7e9b",
-            roleId: 3,
-            skills: "asp.net, c#",
-            workingDetails: {
-                clientId: 2,
-                location: "pune",
-                moduleId: 1,
-                projectId: 3,
-                teamLeadId: "4BpEBnypYhfMzVqQ9oWkgXy4Sox1"
-            }
-        };
-        this.state = {employeeDetails, projectDetails: [], taskDetails: [], clientDetails: [], allTaskStatus: []};
+        this.state = {employeeDetails: {}, projectDetails: [], taskDetails: [], clientDetails: [], allTaskStatus: []};
     }
 
     componentDidMount() {
+        let userId = this.props.match.params.id;
+        if (userId != "") {
+            let userDetails = new database("UserDetails");
+            userDetails.getData(userId).then((user) => {
+                this.setState({employeeDetails: user.val()})
 
-        if (this.state.employeeDetails.workingDetails) {
-            this.setProjectDetailsState();
-            this.setTaskDetailsState();
-            this.setClientDetailsState();
-            this.setTaskStatusState();
+                this.setProjectDetailsState();
+                this.setTaskDetailsState();
+                this.setClientDetailsState();
+                this.setTaskStatusState();
 
-            this.fillEmployeeInformation();
+                this.fillEmployeeInformation();
+                this.showSkills();
+
+            })
         }
+
+        // if (this.state.employeeDetails.workingDetails) {
+        // this.setProjectDetailsState();
+        // this.setTaskDetailsState();
+        // this.setClientDetailsState();
+        // this.setTaskStatusState();
+        //
+        // this.fillEmployeeInformation();
+        // }
 
         $(document).on("change", ".dlalltaskstatus", this.changeIndividualTaskStatus.bind(this));
         $(document).on("change", "#btnUploadResume", this.uploadResume.bind(this));
@@ -102,36 +101,36 @@ export default class EmployeeManagement extends React.Component {
         let empMsg = "";
         if (this.state.projectDetails && this.state.clientDetails) {
             empMsg = (
-            <div>
-                <div className="row">
-                    <div className="col-md-2">
+                <div>
+                    <div className="row">
+                        <div className="col-md-2">
 
-                    </div>
-                    <div className="col-md-8" style={{'textAlign':'center','fontSize':'18px','padding':'12px'}}>&nbsp;&nbsp;
-                         <span  style={{'color':'grey'}}><b>Project:</b> </span> <span> {this.state.projectDetails.name}</span> <span style={{'color':'grey'}}><b>Client:</b></span>
-                         <span> {this.state.clientDetails.name}</span>
-                    </div>
-                    <div className="col-md-2">
+                        </div>
+                        <div className="col-md-8"
+                             style={{'textAlign':'center','fontSize':'18px','padding':'12px'}}>&nbsp;&nbsp;
+                            <span style={{'color':'grey'}}><b>Project:</b> </span>
+                            <span> {this.state.projectDetails.name}</span> <span style={{'color':'grey'}}><b>Client:</b></span>
+                            <span> {this.state.clientDetails.name}</span>
+                        </div>
+                        <div className="col-md-2">
 
+                        </div>
                     </div>
+
+                    <div className="row">
+                        <div className="col-md-4">
+
+                        </div>
+                        <div className="col-md-4" style={{'textAlign':'center','fontSize':'28px'}}>&nbsp;&nbsp;
+                            <span className="label myButton">Tasks</span>
+                        </div>
+                        <div className="col-md-4">
+
+                        </div>
+                    </div>
+
+
                 </div>
-
-                 <div className="row">
-                    <div className="col-md-4">
-
-                    </div>
-                    <div className="col-md-4" style={{'textAlign':'center','fontSize':'28px'}}>&nbsp;&nbsp;
-                        <span className="label myButton">Tasks</span>
-                    </div>
-                    <div className="col-md-4">
-
-                    </div>
-                </div>
-
-
-
-               
-            </div>
             )
         }
 
@@ -225,6 +224,11 @@ export default class EmployeeManagement extends React.Component {
         userDetails.dataOperation(employeeDetails.id, employeeDetails);
     }
 
+    showSkills() {
+        let employeeDetails = this.state.employeeDetails;
+        $("#txtEmployeeSkills").val(employeeDetails.skills);
+    }
+
     render() {
         return (
             <div>
@@ -251,7 +255,7 @@ export default class EmployeeManagement extends React.Component {
                                     </div>
 
                                     <div className="tab-pane" id="2">
-                                        
+
                                         {this.state.employeeDetails.workingDetails != undefined ? this.employeeWorkingMsg() : ""}
 
                                         {this.state.taskDetails != undefined ? Object.keys(this.state.taskDetails).map((key) => {
@@ -350,8 +354,7 @@ export default class EmployeeManagement extends React.Component {
                                                 </div>
                                                 <div className="tab-pane" id="3a">
                                                     <label>Skillsets</label>
-                                                    <input type="text" id="txtEmployeeSkills"
-                                                           defaultValue={this.state.employeeDetails.skills != undefined ? this.state.employeeDetails.skills : ""}/>
+                                                    <input type="text" id="txtEmployeeSkills" className="form-control"/>
                                                     <button id="btnUpdateSkills" onClick={this.updateSkills.bind(this)}>
                                                         Update Skills
                                                     </button>

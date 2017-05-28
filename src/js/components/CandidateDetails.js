@@ -11,10 +11,7 @@ export default class CandidateDetails extends React.Component{
         };        
     }
 
-    
     componentDidMount(){
-       
-
         let objDatabase = new Database('JobDetails');
         objDatabase.getList().then((result) => {
             let dataList = result.val();

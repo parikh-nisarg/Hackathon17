@@ -28,7 +28,7 @@ export default class CandidateRegister extends React.Component {
         let address = this.refs.txtAddress.value;
         let email = this.refs.txtEmail.value;
         let contact = this.refs.txtContact.value;
-        let skill = this.refs.txtSkill.value;
+        let skills = this.refs.txtSkill.value;
 
         let resume = this.refs.fileResume.files[0];
         let password = this.refs.txtPassword.value;
@@ -36,7 +36,7 @@ export default class CandidateRegister extends React.Component {
 
         //   let objData = { email: email, password: psw, name: name, resume: resume };
 
-        let objData = { name: name, address: address, email: email, contact: contact, skill, resume: resume, password: password, roleId:6 };
+        let objData = { name: name, address: address, email: email, contact: contact, skills, resume: resume, password: password, roleId:6 };
 
 
         objDatabase.userRegistration(objData).then((result) => {
