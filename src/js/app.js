@@ -11,7 +11,6 @@ import CandidateReg from './components/CandidateRegister';
 import CandidateDetails from './components/CandidateDetails';
 
 import JobCreate from './components/JobCreate';
-import ManagerDetails from './components/ManagerDetails';
 import LandingPage from './components/LandingPage';
 
 const history = createHistory();
