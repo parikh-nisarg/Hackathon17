@@ -15,6 +15,7 @@ import ManagerDetails from './components/ManagerDetails';
 
 import login from './components/LoginForm';
 import LandingPage from './components/LandingPage';
+import HrManagement from './components/HrManagement';
 
 const history = createHistory();
 
@@ -23,7 +24,7 @@ ReactDOM.render((
             <Switch>
 
 
-                <Route exact={true} path="/" component={login}/>
+                <Route exact={true} path="/" component={HrManagement}/>
                 <Route exact={true} path="/TaskDetails" component={TaskDetails}/>
                 <Route exact={true} path="/ManagerDetails" component={ManagerDetails}/>
                 <Route exact={true} path="/" component={LandingPage}/>
