@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Database from './Database';
 
-export default class JobRequisition extends React.Component{
+export default class ManageJobApprove extends React.Component{
     constructor(){
         super();
     }
