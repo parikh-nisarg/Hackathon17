@@ -15,8 +15,9 @@ export default class EmployeeManagement extends React.Component {
             id: "5UKSFBvpi7OgDS2Ncx0c8hLg9t62",
             isResumeApproved: false,
             name: "Jignesh",
-            resumeUrl: "https://firebasestorage.googleapis.com/v0/b/es6...",
+            resumeUrl: "https://firebasestorage.googleapis.com/v0/b/es6app.appspot.com/o/images%2FSyllabus-of-Gujarat-Administrative-Service-Class-1-and-Gujarat-Civil-Services-Class-1-and-Class-2.pdf?alt=media&token=0438f7f3-7263-4f37-b206-6a44c5be7e9b",
             roleId: 3,
+            skills: "asp.net, c#",
             workingDetails: {
                 clientId: 2,
                 location: "pune",
@@ -35,9 +36,12 @@ export default class EmployeeManagement extends React.Component {
             this.setTaskDetailsState();
             this.setClientDetailsState();
             this.setTaskStatusState();
+
+            this.fillEmployeeInformation();
         }
 
         $(document).on("change", ".dlalltaskstatus", this.changeIndividualTaskStatus.bind(this));
+        $(document).on("change", "#btnUploadResume", this.uploadResume.bind(this));
     }
 
     changeIndividualTaskStatus(e) {
@@ -135,7 +139,6 @@ export default class EmployeeManagement extends React.Component {
     }
 
     renderTaskDetails(key) {
-        debugger;
         const task = this.state.taskDetails[key];
         if (task) {
             return (<div className="row" key={key}>
@@ -159,6 +162,67 @@ export default class EmployeeManagement extends React.Component {
                 </div>
             </div>)
         }
+    }
+
+    fillEmployeeInformation() {
+        const employeeDetails = this.state.employeeDetails;
+
+        this.refs.txtName.value = employeeDetails.name;
+        this.refs.txtAddress.value = employeeDetails.address != undefined ? employeeDetails.address : "";
+        this.refs.txtEmail.value = employeeDetails.email != undefined ? employeeDetails.email : "";
+        this.refs.txtContact.value = employeeDetails.contact != undefined ? employeeDetails.contact : "";
+        this.refs.txtSkill.value = employeeDetails.skills != undefined ? employeeDetails.skills : "";
+    }
+
+    updateEmployeeInformation() {
+        const employeeDetails = this.state.employeeDetails;
+
+        employeeDetails.name = this.refs.txtName.value;
+        employeeDetails.address = this.refs.txtAddress.value;
+        employeeDetails.email = this.refs.txtEmail.value;
+        employeeDetails.contact = this.refs.txtContact.value;
+        employeeDetails.skills = this.refs.txtSkill.value;
+
+        const _employeeDetails = new database("UserDetails");
+        _employeeDetails.dataOperation(employeeDetails.id, employeeDetails);
+    }
+
+    viewResume() {
+        javascript:window.open(this.state.employeeDetails.resumeUrl, "detab", "toolbar=0");
+    }
+
+    uploadResume(e) {
+        let employeeDetails = this.state.employeeDetails;
+        let file = e.target.files[0];
+        let objDatabase = new database("");
+        objDatabase.fileUpload(file).then((result) => {
+            employeeDetails.resumeUrl = result;
+
+            let userDetails = new database("UserDetails");
+            userDetails.dataOperation(employeeDetails.id, employeeDetails);
+        }, (error) => {
+            console.error(error);
+        });
+    }
+
+    setResume() {
+        return (<div>
+            <button type="button" className="btn btn-primary disabled" onClick={this.viewResume.bind(this)}>View
+            </button>
+
+            <input id="btnUploadResume" type="file" className="btn btn-primary active"
+                   onChange={this.uploadResume.bind(this)}
+                   accept="application/pdf"/>
+        </div>)
+    }
+
+    updateSkills() {
+        let skills = $("#txtEmployeeSkills").val();
+        let employeeDetails = this.state.employeeDetails;
+        employeeDetails.skills = skills;
+
+        const userDetails = new database("UserDetails");
+        userDetails.dataOperation(employeeDetails.id, employeeDetails);
     }
 
     render() {
@@ -196,8 +260,104 @@ export default class EmployeeManagement extends React.Component {
                                     </div>
 
                                     <div className="tab-pane" id="3">
-                                        <h3>Display Registration form details in read only mode. and on Eidit click Save
-                                            changes btn and let them edit</h3>
+                                        <div id="exTab1" className="container">
+                                            <ul className="nav nav-pills">
+                                                <li className="active">
+                                                    <a href="#1a" data-toggle="tab">General Information</a>
+                                                </li>
+                                                <li><a href="#2a" data-toggle="tab">Resume</a>
+                                                </li>
+                                                <li><a href="#3a" data-toggle="tab">Skillsets</a>
+                                                </li>
+                                            </ul>
+
+                                            <div className="tab-content clearfix">
+                                                <div className="tab-pane active" id="1a">
+                                                    <div className="container-fluid">
+                                                        <div className="row">
+                                                            <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
+                                                                <form className="go-bottom">
+                                                                    <div>
+                                                                        <input id="name" name="name" type="text"
+                                                                               required ref="txtName"/>
+                                                                        <label htmlFor="name">Name</label>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
+                                                                <form className="go-bottom">
+                                                                    <div>
+                                                                        <input id="address" name="address" type="text"
+                                                                               required ref="txtAddress"/>
+                                                                        <label htmlFor="address">Address</label>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col-md-4" style={{ 'margintop': '-24px' }}>
+                                                                <form className="go-bottom">
+                                                                    <div>
+                                                                        <input id="email" name="email" type="email"
+                                                                               required ref="txtEmail"/>
+                                                                        <label htmlFor="email">Email</label>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
+                                                                <form className="go-bottom">
+                                                                    <div>
+                                                                        <input id="contactnumber" name="contactnumber"
+                                                                               type="number" required ref="txtContact"/>
+                                                                        <label htmlFor="contactnumber">Contact
+                                                                            Number</label>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div className="row">
+                                                            <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
+                                                                <form className="go-bottom">
+                                                                    <div>
+                                                                        <input id="skill" name="skill" type="text"
+                                                                               required ref="txtSkill"/>
+                                                                        <label htmlFor="skill">Skills</label>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div className="row-fluid" style={{ 'marginTop': '14px' }}>
+                                                            <div className="col-md-4">
+                                                                <button type="button" className="btn btnbrowse"
+                                                                        onClick={this.updateEmployeeInformation.bind(this)}>
+                                                                    Update
+                                                                </button>
+                                                                &nbsp;&nbsp;
+                                                                <button type="button" className="btn btnbrowse">Cancel
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                                <div className="tab-pane" id="2a">
+                                                    {this.state.employeeDetails.resumeUrl != undefined ? this.setResume() : ""}
+                                                </div>
+                                                <div className="tab-pane" id="3a">
+                                                    <label>Skillsets</label>
+                                                    <input type="text" id="txtEmployeeSkills"
+                                                           defaultValue={this.state.employeeDetails.skills != undefined ? this.state.employeeDetails.skills : ""}/>
+                                                    <button id="btnUpdateSkills" onClick={this.updateSkills.bind(this)}>
+                                                        Update Skills
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
