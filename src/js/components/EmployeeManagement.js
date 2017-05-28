@@ -97,10 +97,38 @@ export default class EmployeeManagement extends React.Component {
     employeeWorkingMsg() {
         let empMsg = "";
         if (this.state.projectDetails && this.state.clientDetails) {
-            empMsg = (<div>
-                <span>Project : </span> <span>{this.state.projectDetails.name}</span> <span>Client : </span>
-                <span>{this.state.clientDetails.name}</span>
-            </div>)
+            empMsg = (
+            <div>
+                <div className="row">
+                    <div className="col-md-2">
+
+                    </div>
+                    <div className="col-md-8" style={{'textAlign':'center','fontSize':'18px','padding':'12px'}}>&nbsp;&nbsp;
+                         <span  style={{'color':'grey'}}><b>Project:</b> </span> <span> {this.state.projectDetails.name}</span> <span style={{'color':'grey'}}><b>Client:</b></span>
+                         <span> {this.state.clientDetails.name}</span>
+                    </div>
+                    <div className="col-md-2">
+
+                    </div>
+                </div>
+
+                 <div className="row">
+                    <div className="col-md-4">
+
+                    </div>
+                    <div className="col-md-4" style={{'textAlign':'center','fontSize':'28px'}}>&nbsp;&nbsp;
+                        <span className="label myButton">Tasks</span>
+                    </div>
+                    <div className="col-md-4">
+
+                    </div>
+                </div>
+
+
+
+               
+            </div>
+            )
         }
 
         return (empMsg);
@@ -159,6 +187,7 @@ export default class EmployeeManagement extends React.Component {
                                     </div>
 
                                     <div className="tab-pane" id="2">
+                                        
                                         {this.state.employeeDetails.workingDetails != undefined ? this.employeeWorkingMsg() : ""}
 
                                         {this.state.taskDetails != undefined ? Object.keys(this.state.taskDetails).map((key) => {
