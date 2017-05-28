@@ -11,7 +11,8 @@ export default class HrEmpManagement extends React.Component {
             allUsers: [],
             displayUsers: [],
             panCardFile: "",
-            aadharCardFile: ""
+            aadharCardFile: "",
+            clientList:[]
         }
         this.myMethod();
     }
@@ -31,17 +32,17 @@ export default class HrEmpManagement extends React.Component {
             alert(error);
         });
 
-        // objDatabase.searchData("Role", 2).then((result) => {
+        let objClientDatabase = new Database('ClientDetails');
+        
+        objClientDatabase.getList().then((result) => {
 
-        //     let tlList = result.val();
-        //     this.state.allUsers = dataList;
-        //     this.setState({ allUsers: this.state.allUsers });
-        //     this.state.displayUsers = dataList;
-        //     this.setState({ displayUsers: this.state.displayUsers });
+            let clientList = result.val();
+            this.state.clientList = clientList;
+            this.setState({ clientList: this.state.clientList });
 
-        // }, (error) => {
-        //     alert(error);
-        // });
+        }, (error) => {
+            alert(error);
+        });
     }
 
     componentDidMount() {
@@ -49,7 +50,7 @@ export default class HrEmpManagement extends React.Component {
     }
  showCurrent(key, e) {
         $('.collapse').collapse('hide');
-        $(`#${key}`).collapse('toggle')
+        $(`#${key}`).collapse('toggle');
     }
 
     hideCollapse() {
@@ -177,6 +178,12 @@ export default class HrEmpManagement extends React.Component {
         }
    }
 
+   renderClientList(key){
+        let obj = this.state.clientList[key];
+        return (<option data-clientId={obj.id} key={obj.id} value={obj.id}>{obj.name}</option>)
+        
+   }
+
    onChangeSalary(basic, hra, con, sal)
    {
        let [basicVal, hraVal, conVal] = [document.getElementById(basic).value, document.getElementById(hra).value, document.getElementById(con).value];
@@ -291,8 +298,13 @@ export default class HrEmpManagement extends React.Component {
                                 <div className="form-group">
                                     <label htmlFor="txtclient"
                                         className="form-control-label">Client:</label>
-                                    <input type="text" className="form-control"
-                                        id={`txtclient${key}`} />
+                                    {/*<input type="text" className="form-control"
+                                        id={`txtclient${key}`} />*/}
+                                    <select className="form-control" id={`txtclient${key}`}>
+                                        {
+                                            Object.keys(this.state.clientList).map((key) => {return this.renderClientList(key);})
+                                        }
+                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="txtapp"
