@@ -1,23 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Database from './Database';
+
+
 export default class Carrers extends React.Component{
     constructor(){
         super();
+        this.state={
+            jobList:[],
+            currentUserId:0
+        };   
+    }
+ 
+ componentDidMount(){
+        let objDatabase = new Database('JobDetails');
+        objDatabase.getList().then((result) => {
+            let dataList = result.val();
+            this.state.jobList = dataList;
+            //this.state.currentUserId = 5;
+            
+            this.setState({jobList:this.state.jobList});
+
+            //this.setState({currentUserId:this.state.currentUserId});
+
+        }, (error) => {
+            alert(error);
+        });     
     }
 
-    render(){
+    displayJobOpeningData(key){
+        let data = this.state.jobList[key];
+        let users = data.appliedUserIds != null && data.appliedUserIds != "" ? data.appliedUserIds.toString() : "0";        
+        if(data.status != null && (data.status == "closed" || data.status == "rejected" || data.isApproved == false)) // || users.indexOf(this.state.currentUserId) > -1 || data.isApproved == false) )
+            return;
         return(
-            <div>
-
-
-{/*new*/}
-    <div
-        style={{'margin':'35px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
-        
-
-
-                
+            <div id={key} key={key} style={{'margin':'35px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
                 <div className="row">
                     <div className="col-md-2">
                         <img src="src/images/jobSearch.jpg" style={{'width':'150px'}}/>
@@ -27,48 +45,46 @@ export default class Carrers extends React.Component{
                                 <div className="col-md-10">
                                         <span style={{'fontSize':'20px'}}>
                                             <strong>
-                                                Lorem ipsum dolor sit amet, consectetur
-                                                adipisicing elit.
-                                                &nbsp;&nbsp;
+                                                {data.title}
                                             </strong>
                                         </span>
                                 </div>    
-                                
                                 <div className="col-md-2">
-                                                <span
-                                                className="label label-info" style={{'fontSize':'12'}}>Full Time</span>
-                                                &nbsp;&nbsp;<span
-                                                className="label btnbrowse"
-                                                style={{'cursor':'pointer','fontSize':'12'}}>Apply</span>
+                                    {/*<span className="label label-info" style={{'fontSize':12}}>Full Time</span>
+                                    <span className="label btnbrowse" style={{'cursor':'pointer','fontSize':12}}>Apply</span>*/}
+
+                                <span className="label btnbrowse" style={{'cursor':'pointer','float':'right', 'margin':'4px','fontSize':12}}>Apply</span>
+                                <span className={key % 2  == 1 ? 'label label-primary' : 'label label-info'} style={{'float':'right', 'margin':'4px','fontSize':12}}>{key % 2 == 1 ?"Full-Time": "Part-Time"}</span>
                                 </div>    
                             </div>
                             
                             <div className="row">
                                 <div className="col-md-12">
-                                    asasdasdasd asd asd asdfn kjasdjkas d kdjfkj hdf sdkhfkjh hsdfkhjh sdjkfkh sdkhfj sdfk df sdljkf sdfl df
-                                    alsddlj najklj asddfjk fdjkkj sdjkfjk jsdjfkjl jsjdfjjl sdf sdfuo ujsdfujh usdfuo osdfou sdofo osdf end
-                                    asd asdlj nasdjkbndkhkh hkaskgdhk khasdhkghk assdghjk ashjkdgahj dshgdhashdj asd
+                                    {data.description}
                                 </div>
-                            </div> 
+                            </div>
                             
                             <div className="row" style={{'paddingTop':'14px'}}>
                                 <div className="col-md-4">
-                                    <span style={{'color':'grey'}}>Location : PUNE</span>&nbsp;&nbsp;
-                                    
+                                    <span style={{'color':'grey'}}>Location : {data.location}</span>&nbsp;&nbsp;
                                 </div>
                                 <div className="col-md-4">
-                                <span style={{'color':'grey'}}>Skills  : ASP.NET, JQuery</span>
+                                    <span style={{'color':'grey'}}>Skills  : {data.skills}</span>
                                 </div>
-                                
-                            </div>       
-                    </div>    
+                            </div>
                     </div>
-                </div> 
-                                            {/*End new*/}    
-                                              {/*new*/}
+                    </div>
+                </div>
 
+        )
+    }
 
-
+    render(){
+        return(
+            <div>
+                {
+                    Object.keys(this.state.jobList).map((key)=>{ return this.displayJobOpeningData(key);})
+                }
             </div>
         )
     }
