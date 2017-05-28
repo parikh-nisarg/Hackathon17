@@ -372,7 +372,13 @@ export default class HrEmpManagement extends React.Component {
     render() {
         return (
             <div>
-                <input type="text" id="txtSearch" /> <button type="button" onClick={this.searchUser.bind(this)}> Search </button>
+                <br/><div className="row-fluid" style={{'textAlign':'center'}}>
+                    
+                    <input  class="form-control" type="text" id="txtSearch" style={{'marginRight':'10px'}} />
+                    <button type="button" onClick={this.searchUser.bind(this)}> Search </button>
+
+                </div><br/>    
+                
                 <div  >
                     {
                         Object.keys(this.state.displayUsers).map((key) => { return this.displayUser(key) })
