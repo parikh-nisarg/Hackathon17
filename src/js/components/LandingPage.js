@@ -22,8 +22,8 @@ export default class LandingPage extends React.Component{
 
 
 
-              <div className="jumbotron text-center headerBackground" style={{'marginTop': '-90px','height':'10px'}}>
-                <span style={{'fontSize':'40px','float':'left','color':'purple'}}>Cakewalk<span style={{'fontSize':'14px','color':'purple'}}><italic>  I.T.'s Simple</italic></span></span> 
+              <div className="well text-center headerBackground" style={{'marginTop': '-90px','height':'45px'}}>
+                <span style={{'fontSize':'30px','float':'left','color':'purple','margin':'-17px'}}>Cakewalk<span style={{'fontSize':'14px','color':'purple'}}><italic>  I.T.'s Simple</italic></span></span> 
                 
               </div>
 
