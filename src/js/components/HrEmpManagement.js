@@ -122,7 +122,6 @@ export default class HrEmpManagement extends React.Component {
             let dataList = result.val();
             this.state.allUsers = dataList;
             this.setState({ allUsers: this.state.allUsers });
-            this.render();
         }, (error) => {
             alert(error);
         });
