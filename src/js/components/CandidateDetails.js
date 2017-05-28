@@ -33,7 +33,7 @@ export default class CandidateDetails extends React.Component{
     displayJobOpeningData(key){
         let data = this.state.jobList[key];
         let users = data.appliedUserIds != null && data.appliedUserIds != "" ? data.appliedUserIds.toString() : "0";        
-        if(data.status != null && (data.status == "closed" || data.status == "rejected" || users.indexOf(this.state.currentUserId) > -1))
+        if(data.status != null && (data.status == "closed" || data.status == "rejected" || users.indexOf(this.state.currentUserId) > -1 || data.isApproved == false) )
             return;
         return(
              <div key={key} style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
@@ -70,7 +70,7 @@ export default class CandidateDetails extends React.Component{
     displayJobAppliedData(key){
         let data = this.state.jobList[key];
         let users = data.appliedUserIds != null && data.appliedUserIds != "" ? data.appliedUserIds.toString() : "0";
-         if(data.status != null && (data.status == "closed" || data.status == "rejected" || users.indexOf(this.state.currentUserId) == -1))
+         if(data.status != null && (data.status == "closed" || data.status == "rejected" || users.indexOf(this.state.currentUserId) == -1 || data.isApproved == false))
             return;
         return(
         <div key={key} style={{'marginTop':'25px','border':'1px solid #e8dddd', 'borderRadius': '8px'}}>
