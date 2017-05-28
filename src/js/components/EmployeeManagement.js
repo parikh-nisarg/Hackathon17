@@ -113,7 +113,6 @@ export default class EmployeeManagement extends React.Component {
                             <span> {this.state.clientDetails.name}</span>
                         </div>
                         <div className="col-md-2">
-
                         </div>
                     </div>
 
@@ -206,12 +205,24 @@ export default class EmployeeManagement extends React.Component {
 
     setResume() {
         return (<div>
-            <button type="button" className="btn btn-primary disabled" onClick={this.viewResume.bind(this)}>View
-            </button>
-
-            <input id="btnUploadResume" type="file" className="btn btn-primary active"
+          
+            <div className="row">
+                <div className="col-md-12">
+                   
+                        <input id="btnUploadResume" type="file" className="btn myButton"
                    onChange={this.uploadResume.bind(this)}
                    accept="application/pdf"/>
+                   
+                 
+                </div>
+                
+            </div><br/>
+            <div className="row">
+            <div className="col-md-12">
+                        <button type="button" className="btn myButton" onClick={this.viewResume.bind(this)} >View</button> 
+             </div>
+             </div>
+            
         </div>)
     }
 
@@ -262,7 +273,7 @@ export default class EmployeeManagement extends React.Component {
                                             return this.renderTaskDetails(key)
                                         }) : ""}
                                     </div>
-
+                                    <br/>    
                                     <div className="tab-pane" id="3">
                                         <div id="exTab1" className="container">
                                             <ul className="nav nav-pills">
@@ -276,7 +287,7 @@ export default class EmployeeManagement extends React.Component {
                                             </ul>
 
                                             <div className="tab-content clearfix">
-                                                <div className="tab-pane active" id="1a">
+                                                <div className="tab-pane active" id="1a"><br/>
                                                     <div className="container-fluid">
                                                         <div className="row">
                                                             <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
@@ -301,7 +312,7 @@ export default class EmployeeManagement extends React.Component {
                                                             </div>
                                                         </div>
                                                         <div className="row">
-                                                            <div className="col-md-4" style={{ 'margintop': '-24px' }}>
+                                                            <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
                                                                 <form className="go-bottom">
                                                                     <div>
                                                                         <input id="email" name="email" type="email"
@@ -350,6 +361,7 @@ export default class EmployeeManagement extends React.Component {
                                                     </div>
                                                 </div>
                                                 <div className="tab-pane" id="2a">
+                                                    <br/>
                                                     {this.state.employeeDetails.resumeUrl != undefined ? this.setResume() : ""}
                                                 </div>
                                                 <div className="tab-pane" id="3a">
