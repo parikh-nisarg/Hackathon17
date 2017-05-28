@@ -108,7 +108,7 @@ export default class EmployeeManagement extends React.Component {
 
                     </div>
                     <div className="col-md-8" style={{'textAlign':'center','fontSize':'18px','padding':'12px'}}>&nbsp;&nbsp;
-                         <span  style={{'color':'grey'}}><b>Project:</b> </span> <span> {this.state.projectDetails.name}</span> <span style={{'color':'grey'}}><b>Client:</b></span>
+                         <span  style={{'color':'grey'}}><b>Project:</b> </span> <span> {this.state.projectDetails.name}</span>&nbsp;&nbsp; <span style={{'color':'grey'}}><b>Client:</b></span>
                          <span> {this.state.clientDetails.name}</span>
                     </div>
                     <div className="col-md-2">
@@ -207,12 +207,24 @@ export default class EmployeeManagement extends React.Component {
 
     setResume() {
         return (<div>
-            <button type="button" className="btn btn-primary disabled" onClick={this.viewResume.bind(this)}>View
-            </button>
-
-            <input id="btnUploadResume" type="file" className="btn btn-primary active"
+          
+            <div className="row">
+                <div className="col-md-12">
+                   
+                        <input id="btnUploadResume" type="file" className="btn myButton"
                    onChange={this.uploadResume.bind(this)}
                    accept="application/pdf"/>
+                   
+                 
+                </div>
+                
+            </div><br/>
+            <div className="row">
+            <div className="col-md-12">
+                        <button type="button" className="btn myButton" onClick={this.viewResume.bind(this)} >View</button> 
+             </div>
+             </div>
+            
         </div>)
     }
 
@@ -258,7 +270,7 @@ export default class EmployeeManagement extends React.Component {
                                             return this.renderTaskDetails(key)
                                         }) : ""}
                                     </div>
-
+                                    <br/>    
                                     <div className="tab-pane" id="3">
                                         <div id="exTab1" className="container">
                                             <ul className="nav nav-pills">
@@ -272,7 +284,7 @@ export default class EmployeeManagement extends React.Component {
                                             </ul>
 
                                             <div className="tab-content clearfix">
-                                                <div className="tab-pane active" id="1a">
+                                                <div className="tab-pane active" id="1a"><br/>
                                                     <div className="container-fluid">
                                                         <div className="row">
                                                             <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
@@ -297,7 +309,7 @@ export default class EmployeeManagement extends React.Component {
                                                             </div>
                                                         </div>
                                                         <div className="row">
-                                                            <div className="col-md-4" style={{ 'margintop': '-24px' }}>
+                                                            <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
                                                                 <form className="go-bottom">
                                                                     <div>
                                                                         <input id="email" name="email" type="email"
@@ -346,15 +358,25 @@ export default class EmployeeManagement extends React.Component {
                                                     </div>
                                                 </div>
                                                 <div className="tab-pane" id="2a">
+                                                    <br/>
                                                     {this.state.employeeDetails.resumeUrl != undefined ? this.setResume() : ""}
                                                 </div>
                                                 <div className="tab-pane" id="3a">
-                                                    <label>Skillsets</label>
-                                                    <input type="text" id="txtEmployeeSkills"
-                                                           defaultValue={this.state.employeeDetails.skills != undefined ? this.state.employeeDetails.skills : ""}/>
-                                                    <button id="btnUpdateSkills" onClick={this.updateSkills.bind(this)}>
-                                                        Update Skills
-                                                    </button>
+                                                    
+
+
+
+                                                      <form className="go-bottom">
+                                                                    <div>
+                                                                        <input id="txtEmployeeSkills" name="skill" type="text"
+                                                                               required ref="txtSkill"  defaultValue={this.state.employeeDetails.skills != undefined ? this.state.employeeDetails.skills : ""}/>
+                                                                        <label htmlFor="skill">Skillsets</label>
+                                                                    </div>
+                                                      </form>
+                                                       <br/> 
+                                                       <button className="btn btn-md myButton" id="btnUpdateSkills" onClick={this.updateSkills.bind(this)} style={{'marginTop':'5px'}}>
+                                                            Update Skills
+                                                        </button>
                                                 </div>
                                             </div>
                                         </div>
