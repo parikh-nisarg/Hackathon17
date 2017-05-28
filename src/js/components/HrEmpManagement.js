@@ -127,7 +127,6 @@ export default class HrEmpManagement extends React.Component {
     }
 
     updateUserData(key, empObj) {
-        debugger;
 
         if(!empObj.workingDetails)
         {
@@ -135,7 +134,7 @@ export default class HrEmpManagement extends React.Component {
         }
         
         empObj.workingDetails.location =  $(`#txtLocation${key}`).val();
-        empObj.workingDetails.TeamLeadId =  $(`#txtTeamLeader${key}`).val();
+        empObj.workingDetails.teamLeadId =  $(`#txtTeamLeader${key}`).val();
 
         empObj.roleId = $(`#txtRole${key}`).val();
         
