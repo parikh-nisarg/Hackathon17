@@ -106,7 +106,7 @@ export default class CandidateRegister extends React.Component {
                         <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
                             <form className="go-bottom">
                                 <div>
-                                    <input id="password" name="password" type="text" required ref="txtPassword" />
+                                    <input id="password" name="password" type="password" required ref="txtPassword" />
                                     <label htmlFor="password">Password</label>
                                 </div>
                             </form>
@@ -116,7 +116,7 @@ export default class CandidateRegister extends React.Component {
                         <div className="col-md-4" style={{ 'marginTop': '-24px' }}>
                             <form className="go-bottom">
                                 <div>
-                                    <input id="confirmPassword" name="confirmPassword" type="text" required ref="txtConfirmPassword" />
+                                    <input id="confirmPassword" name="confirmPassword" type="password" required ref="txtConfirmPassword" />
                                     <label htmlFor="password">Confirm Password</label>
                                 </div>
                             </form>
