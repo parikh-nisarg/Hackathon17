@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import firebase from 'firebase';
@@ -143,9 +141,10 @@ export default class Database {
                     tempObj.settlementDetails = [{}];
                     tempObj.dateOfJoining = "";
                     tempObj.dateOfLeaving = "";
-                    tempObj.ExpYear = "";
-                    tempObj.roleId = "",
-                        tempObj.isBlackList = false;
+                    tempObj.expYear = "";
+                    tempObj.roleId = objData.roleId,
+                    tempObj.isBlackList = false;
+                    tempObj.isResumeApproved = false;
                     tempObj.resumeUrl = downloadURL;
                     tempObj.panCardUrl = "";
                     tempObj.aadharCardUrl = "";
@@ -177,7 +176,7 @@ export default class Database {
 
             let storage = firebase.storage();
             let storageRef = storage.ref();
-        
+
             var type = file.type.indexOf('image') > 0 ? 'image/jpeg' : 'application/pdf';
             let metadata = {
                 contentType: type,
@@ -195,7 +194,7 @@ export default class Database {
                 function () {
                     console.log('Upload completed successfully, now we can get the download URL');
                     let downloadURL = uploadTask.snapshot.downloadURL;
-                    if (downloadURL !="") {
+                    if (downloadURL != "") {
                         resolve(downloadURL);
                     }
                     else {

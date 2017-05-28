@@ -12,8 +12,8 @@ import CandidateDetails from './components/CandidateDetails';
 
 import JobCreate from './components/JobCreate';
 import ManagerDetails from './components/ManagerDetails';
-
 import login from './components/LoginForm';
+
 import LandingPage from './components/LandingPage';
 import HrManagement from './components/HrManagement';
 

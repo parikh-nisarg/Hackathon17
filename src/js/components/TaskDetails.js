@@ -6,13 +6,25 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 
 import database from './Database';
+import DesignApp from './DesignApp';
 
 export default class TaskDetails extends Component {
     constructor() {
         super();
 
-        this.state = ({occupiedTeamLeadWork: [], clientInfo: [], projectInfo: [], moduleInfo: [], employeeIds: []});
+        this.state = ({
+            teamLeadId: "4BpEBnypYhfMzVqQ9oWkgXy4Sox1",
+            occupiedTeamLeadWork: [],
+            clientInfo: [],
+            projectInfo: [],
+            moduleInfo: [],
+            employeeIds: [],
+            allTasks: [],
+            allTaskStatus: []
+        });
+    }
 
+    componentDidMount() {
         let teamLeadId = "4BpEBnypYhfMzVqQ9oWkgXy4Sox1";
 
         let personDetails = new database("UserDetails");
@@ -53,7 +65,30 @@ export default class TaskDetails extends Component {
             }
         });
 
-        // let occupiedTeamLeadInfo = _database.getTeamLeadWorkingDetails("4BpEBnypYhfMzVqQ9oWkgXy4Sox1");
+        this.setAllTaskState(teamLeadId);
+
+        //set task status state
+        let taskStatusDetails = new database("TaskStatusDetails");
+        taskStatusDetails.getList().then((status) => {
+            const allTaskStatus = status.val();
+
+            this.setState({allTaskStatus});
+        });
+
+        $('#modalAddTask').on('shown.bs.modal', function () {
+            $('#txtTaskName').focus();
+        });
+        $(document).on("change", ".dlalltaskstatus", this.changeIndividualTaskStatus.bind(this));
+    }
+
+    setAllTaskState(teamLeadId) {
+        let taskDetails = new database("TaskDetails");
+        taskDetails.searchData(`assignById`, teamLeadId).then((data) => {
+            let allTasks = data.val();
+            if (allTasks) {
+                this.setState({allTasks});
+            }
+        });
     }
 
     setClientInfoState(...clientIds) {
@@ -93,21 +128,125 @@ export default class TaskDetails extends Component {
         }
     }
 
-    setModuleInfoState(...moduleIds) {
-        let moduleDetails = new database("ModuleDetails"), moduleInfo = [];
-        for (let i = 0; i < moduleIds.length; i++) {
-            moduleDetails.getData(moduleIds[i]).then((data) => {
-                var _moduleInfo = data.val();
+    renderOptions(obj) {
+        return (<option data-id={obj.id} key={obj.id}>{obj.name}</option>)
+    }
 
-                moduleInfo.push(_moduleInfo);
-                this.setState({moduleInfo});
+    openAddTaskModal(e) {
+        $("#modalAddTask").modal("show");
+    }
+
+    addNewTask() {
+        let id = new Date().getTime();
+        let name = $("#txtTaskName").val().trim();
+        let projectId = $("#dlProjects :selected").attr("data-id");
+        let projectName = $("#dlProjects :selected").val();
+        let moduleId = $("#dlModules :selected").attr("data-id");
+        let moduleName = $("#dlModules :selected").val();
+        let clientId = $("#dlClients :selected").attr("data-id");
+        let createdDate = new Date;
+        let deadlineDate = new Date($("#txtTaskDeadlineDate").val());
+        let taskStatusId = 1495922175082;   //Static as CREATED TASK STATUS
+        let assignToId = $("#dlEmployees :selected").attr("data-id");
+        let assignById = this.state.teamLeadId;
+
+        let taskObj = {
+            id,
+            name,
+            projectId,
+            projectName,
+            moduleId,
+            moduleName,
+            clientId,
+            createdDate,
+            deadlineDate,
+            taskStatusId,
+            assignToId,
+            assignById
+        };
+
+        let taskDetails = new database("TaskDetails");
+        taskDetails.dataOperation(id, taskObj);
+
+        this.setAllTaskState(this.state.teamLeadId);
+        this.clearModalFields();
+        $("#modalAddTask").modal("hide");
+    }
+
+    clearModalFields() {
+        $("#txtTaskName").val("");
+        $("#txtTaskDeadlineDate").val("");
+    }
+
+    changeIndividualTaskStatus(e) {
+        let taskId = $(e.currentTarget).find(":selected").attr("data-taskId");
+        let taskStatusId = $(e.currentTarget).find(":selected").attr("data-taskStatusId");
+
+        let task = this.state.allTasks[taskId];
+        task.taskStatusId = taskStatusId;
+
+        let taskDetails = new database("TaskDetails");
+        taskDetails.dataOperation(taskId, task);
+    }
+
+    changeAllTaskStatus(e) {
+        const taskStatusId = $($(e.currentTarget).find(":selected")[0]).attr("data-taskStatusid"), _this = this;
+        let checkedTask = $(".chk-task:checked");
+        if (checkedTask.length > 0) {
+            checkedTask.each((index, elem) => {
+                const taskId = $(elem).attr("data-taskId");
+                let task = _this.state.allTasks[parseInt(taskId)];
+                task.taskStatusId = parseInt(taskStatusId);
+
+                const taskDetails = new database("TaskDetails");
+                taskDetails.dataOperation(parseInt(taskId), task);
             });
+
+            _this.setAllTaskState(_this.state.teamLeadId);
+            $(".chk-task").prop("checked", false);
         }
     }
 
-    renderOptions(obj) {
-        debugger;
-        return (<option data-clientId={obj.id} key={obj.id}>{obj.name}</option>)
+    renderTasks(key) {
+        const task = this.state.allTasks[key];
+        if (task) {
+            return (<div className="row" key={task.id}>
+                <div className="col-md-1">
+                    <div className="checkbox">
+                        <label>
+                            <input className="chk-task" data-taskId={task.id} type="checkbox"/>
+                                                        <span className="cr">
+                                                            <i className="cr-icon glyphicon glyphicon-ok"></i></span>
+                        </label>
+                    </div>
+                </div>
+                <div className="col-md-8" style={{'fontSize':'18px','padding':'8px'}}>
+                    {task.name}
+                </div>
+                <div className="col-md-3">
+                    <div className="form-group" style={{'width':'125px','float':'right'}}>
+                        <select className="form-control dlalltaskstatus">
+                            {Object.keys(this.state.allTaskStatus).map((key) => {
+                                const taskStatus = this.state.allTaskStatus[key];
+                                const _selected = task.taskStatusId == taskStatus.id ? "selected" : "";
+
+                                return (<option key={taskStatus.id}
+                                                data-taskId={task.id} selected={_selected}
+                                                data-taskStatusId={taskStatus.id}>{taskStatus.name}</option>)
+
+                            })}
+                        </select>
+                    </div>
+                </div>
+            </div>);
+
+        }
+    }
+
+    renderTaskStatus(key) {
+        const taskStatus = this.state.allTaskStatus[key];
+
+        return (<option data-taskStatusId={taskStatus.id} key={taskStatus.id}>{taskStatus.name}</option>)
     }
 
     render() {
@@ -241,14 +380,6 @@ export default class TaskDetails extends Component {
                                             {/*End new*/}       
                                             
 
-
-
-
-                                    
-
-                                    
-
-
                                 </div>
 
                                 <div className="tab-pane" id="2">
@@ -299,53 +430,48 @@ export default class TaskDetails extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     {/* TASK CONTENT ENDS */}
 
                                     {/*TASK TABLE*/}
                                     <div>
                                         <div className="row">
                                             <div className="col-md-4">
-                                            </div>    
+                                                <div className="form-group">
+                                                    <select className="form-control"
+                                                            onChange={this.changeAllTaskStatus.bind(this)}
+                                                            style={{'width':120}}>
+                                                        {Object.keys(this.state.allTaskStatus).map((key) => {
+                                                            return this.renderTaskStatus(key)
+                                                        })}
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div className="col-md-4" style={{'textAlign':'center'}}>
                                                 <span >
-                                                    <h2><button className = "label myButton">Tasks <i className="fa fa-plus-circle fa-5" aria-hidden="true"></i></button></h2>
+                                                    <h2>
+                                                        <button className="label myButton"
+                                                                onClick={ e => this.openAddTaskModal(e)}>Tasks <i
+                                                            className="fa fa-plus-circle fa-5" aria-hidden="true"></i>
+                                                        </button>
+                                                    </h2>
                                                 </span>
                                                 <span>
                                                    
                                                 </span>
                                             </div>
                                             <div className="col-md-4">
-                                            </div>    
-                                            
+                                            </div>
+
                                         </div>
-                                        <div className="row">
-                                            <div className="col-md-1">
-                                                <div className="checkbox">
-                                                    <label>
-                                                        <input type="checkbox" />
-                                                        <span className="cr"><i className="cr-icon glyphicon glyphicon-ok"></i></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-8" style={{'fontSize':'18px','padding':'8px'}}>
-                                                Task description with errors will diaplay here asd asdfsad sdkhbs sadfde fiu asd asd asdg hjasdg asdg asjdg jhasdhj asgdj asjdgjas jdgjas dhjg
-                                            </div>
-                                            <div className="col-md-3">
-                                              <div className="form-group" style={{'width':'125px','float':'right'}}>
-                                                <select className="form-control" id="exampleSelect1">
-                                                <option>111111</option>
-                                                <option>22222</option>
-                                                <option>33333</option>
-                                                <option>44444</option>
-                                                <option>55555</option>
-                                                </select>
-                                            </div>
-                                            </div>
-                                        </div>  
-                                          
-                                    </div>        
-                                    
+
+                                        {Object.keys(this.state.allTasks).map((key) => {
+                                            return this.renderTasks(key)
+                                        })}
+
+
+                                    </div>
+
                                     {/*END TASK TABLE*/}
                                 </div>
 
@@ -365,6 +491,46 @@ export default class TaskDetails extends Component {
             </div>
             {/*end tab example*/}
 
+            <div className="modal fade" id="modalAddTask" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Add new task</h5>
+                            <button type="button" className="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div className="modal-body">
+                            <div className="form-group">
+                                <label htmlFor="txtTaskName"
+                                       className="form-control-label">Message:</label>
+                                                                <textarea className="form-control"
+                                                                          id="txtTaskName"></textarea>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="recipient-name"
+                                       className="form-control-label">Deadline date:</label>
+                                <input type="date" className="form-control"
+                                       id="txtTaskDeadlineDate"/>
+                            </div>
+
+                        </div>
+
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary"
+                                    data-dismiss="modal">Close
+                            </button>
+                            <button id="btnAddTask" className="btn btn-primary" onClick={this.addNewTask.bind(this)}>
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>)
     }
