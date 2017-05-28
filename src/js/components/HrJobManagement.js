@@ -43,40 +43,37 @@ export default class HrJobManagement extends React.Component {
         var text = data.isResumeApproved ? "Is Selected?" : "Is Eligible?"
         return (
             <div key={key}>
-                <div style={{ 'marginTop': '25px', 'border': '1px solid #e8dddd', 'borderRadius': '8px' }}>
+               
+                 
                     <div className="row" >
-                        <div className="col-md-2" style={{ 'marginTop': '5px', 'marginLeft': '5px' }}>
-                            <img src="src/images/userprofile.png" style={{ 'width': '150px' }} />
-                        </div>
+                        <div className="col-md-2">
 
-                        <div className="col-md-9" style={{ 'marginTop': '5px' }}>
-                            <span style={{ 'fontSize': '20px' }}>
-                                <strong>
-                                name :     {data.name}
-                              Experience:      {data.expYear}
-                              Contact No : {data.contact}
-                              email:{data.email}
-                              skills :{data.skill}
-                                    &nbsp;&nbsp;
-                                    &nbsp;&nbsp;
-                                    <button type="button" className="btn btn-primary btn-sm" id={`btnResume${key}`} onClick={this.approvedResume.bind(this,key)} style={{ 'float': 'right', 'marginLeft': '4px' }}>{text}</button>
-
-                                    <button type="button" className="btn btn-info btn-sm" data-toggle="modal" style={{ 'float': 'right', 'marginLeft': '4px' }}
-                                     data-whatever="@getbootstrap" onClick={this.showPopup.bind(this,key)}  >View</button>
-                                </strong>
-                            </span>
                         </div>
-
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md-2" style={{ 'marginTop': '5px' }}>
+                        <div className="col-md-7">
+                             <div style={{ 'marginTop': '10px', 'border': '1px solid #e8dddd', 'borderRadius': '8px','marginBottom':'-17' }}>
+                                <div className="row">
+                                    <div className="col-md-2" style={{ 'marginTop': '5px', 'marginLeft': '5px' }}>
+                                        <img src="src/images/userprofile.png" style={{ 'width': '80px','height': '60px' }} />
+                                    </div>
+                                    <div className="col-md-4" style={{'fontSize':'13px'}}>
+                                           <div><b>Name</b>  {data.name}</div>
+                                           <div><b>Skills</b> {data.skill}</div>
+                                           <div><b>Experience</b> {data.expYear}</div>
+                                           <div><span><b>Email</b> {data.email}</span>&nbsp;<span><b>Contact No</b> {data.contact}</span></div>
+                                    </div>   
+                                    <div className="col-md-6" style={{'margin':'19px','width':'220px','float':'right'}}>
+                                         <button type="button" className="btn btn-primary btn-sm" id={`btnResume${key}`} onClick={this.approvedResume.bind(this,key)}>{text}</button>
+                                        &nbsp;&nbsp; <button type="button" className="btn btn-info btn-sm" data-toggle="modal"  data-whatever="@getbootstrap" onClick={this.showPopup.bind(this,key)}  >View</button>
+                                    </div>
+                                </div>
+                                </div>
+                               
+                             </div>       
                         </div>
-                        <div className="col-md-9">
-                            {data.name}
-                        </div>
-                    </div>
-                </div>
+                        <div className="col-md-3">
+                           
+                        </div><br/>
+
             </div>
         )
     }
