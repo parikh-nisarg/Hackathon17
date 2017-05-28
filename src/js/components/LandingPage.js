@@ -16,25 +16,65 @@ export default class LandingPage extends React.Component{
     render(){
         return(
             <div>
-                    <div style={{'float':'right','margin':'5px'}}>
-                        <button className="btn myButton" onClick = {this.showLoginRegister.bind(this)} >Login / Register</button>
+
+
+                <nav className="navbar navbar-default">
+                    <div className="container-fluid">
+                    
+                        <div className="navbar-header">
+                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span className="sr-only">Toggle navigation</span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
+                        <a className="navbar-brand" href="#">Cakewalk</a>
+                        </div>
+
+                    
+                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul className="nav navbar-nav">
+                            <li className="active"><a href="#">Home</a></li>
+                            <li><a href="#">AboutUs</a></li>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                        
+                           <button className="btn btn-danger navbar-btn navbar-right" onClick = {this.showLoginRegister.bind(this)}>Login / Sign Up</button>
+                        </div>
                     </div>
+                </nav>
 
+                   <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div>
+                                {this.state.isLogin ? <LoginForm/> : ""} 
+                            </div>
+                        </div>    
+                    </div>    
+                </div>
 
-
-              <div className="jumbotron text-center headerBackground" style={{'marginTop': '-90px','height':'10px'}}>
-                <span style={{'fontSize':'40px','float':'left','color':'purple'}}>Cakewalk<span style={{'fontSize':'14px','color':'purple'}}><italic>  I.T.'s Simple</italic></span></span> 
-                
-              </div>
-
-
-            
-              <div>
-                 {this.state.isLogin ? <LoginForm/> : ""} 
-              </div>
 
             </div>
+            
+              
+
         )
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+         
+        
+    
 
