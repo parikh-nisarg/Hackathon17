@@ -163,7 +163,7 @@ export default class ManagerDashboard extends React.Component {
                 <div style={{ 'marginTop': '25px', 'border': '1px solid #e8dddd', 'borderRadius': '8px' }}>
                     <div className="row" >
                         <div className="col-md-2" style={{ 'marginTop': '5px', 'marginLeft': '5px' }}>
-                            <img src="src/images/JobOpenings-Blue.png" style={{ 'width': '150px' }} />
+                            <img src="src/images/required.png" style={{ 'width': '150px' }} />
                         </div>
 
                         <div className="col-md-9" style={{ 'marginTop': '5px' }}>
@@ -230,13 +230,13 @@ export default class ManagerDashboard extends React.Component {
                         <div className="col-md-2">
 
                         </div>
-                        <div className="col-md-7">
+                        <div className="col-md-9">
                             <div style={{ 'marginTop': '10px', 'border': '1px solid #e8dddd', 'borderRadius': '8px', 'marginBottom': '-17px' }}>
                                 <div className="row">
                                     <div className="col-md-2" style={{ 'marginTop': '5px', 'marginLeft': '5px' }}>
                                         <img src="src/images/userprofile.png" style={{ 'width': '80px', 'height': '60px' }} />
                                     </div>
-                                    <div className="col-md-4" style={{ 'fontSize': '13px' }}>
+                                    <div className="col-md-5" style={{ 'fontSize': '13px' }}>
                                         <div><b>Name</b>  {data.name}</div>
                                         <div><b>Skills</b> {data.skill}</div>
                                         <div><b>Experience</b>  {data.expYear} Years</div>
@@ -245,7 +245,7 @@ export default class ManagerDashboard extends React.Component {
                                         <div><b>Contact No</b> {data.contact}</div>
                                     </div>
                                     <div className="col-md-6" style={{ 'margin': '19px', 'width': '220px', 'float': 'right' }}>
-                                        <button type="button" className="btn btn-primary btn-sm" id={`btnResume${key}`} onClick={this.displayUserInfo.bind(this, key)}>View</button>
+                                        <button  type="button" className="btn btn-primary" id={`btnResume${key}`} onClick={this.displayUserInfo.bind(this, key)}>View</button>
                                         &nbsp;&nbsp;
                                 </div>
                                 </div>
@@ -253,9 +253,9 @@ export default class ManagerDashboard extends React.Component {
 
                         </div>
                     </div>
-                    <div className="col-md-3">
+                        <div className="col-md-1">
 
-                    </div> <br />
+                        </div> <br />
 
                 </div >
             )
