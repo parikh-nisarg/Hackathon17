@@ -372,7 +372,7 @@ export default class HrEmpManagement extends React.Component {
     render() {
         return (
             <div>
-                <br/><div className="row-fluid" style={{'textAlign':'center'}}>
+            <br/><div className="row-fluid" style={{'textAlign':'center'}}>
                     
                     <input  class="form-control" type="text" id="txtSearch" style={{'marginRight':'10px'}} />
                     <button type="button" onClick={this.searchUser.bind(this)}> Search </button>
@@ -380,6 +380,7 @@ export default class HrEmpManagement extends React.Component {
                 </div><br/>    
                 
                 <div  >
+
                     {
                         Object.keys(this.state.displayUsers).map((key) => { return this.displayUser(key) })
                     }
